@@ -38,7 +38,7 @@ const blogs = [
 
 function page() {
   return (
-    <div>
+    <>
         <Navbar />
         <div className="w-screen min-h-screen h-auto">
             <Title 
@@ -46,10 +46,10 @@ function page() {
             slogan='read the best blogs written by tech experts'
             />
 
-        <div className="flex flex-wrap mx-auto my-10 justify-center items-start px-14 gap-28">
+        <div className="flex flex-wrap mx-auto my-10 justify-center items-center sm:items-start sm:px-14 px-4 pr-0 pl-8 gap-4 sm:gap-28">
         {
             blogs.map((items, idx) => (
-                <div className="w-1/4">
+                <div className="sm:w-1/4 w-full">
                 <Cards 
                 blog={items}
                 key={idx}
@@ -60,7 +60,7 @@ function page() {
         </div>
         </div>
         <Footer />
-    </div>
+    </>
   )
 }
 
