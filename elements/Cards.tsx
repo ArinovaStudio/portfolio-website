@@ -42,9 +42,9 @@ export default function Cards({ blog }: { blog: any }) {
         <motion.h3
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 1.2, delay: 1 }}
           viewport={{ once: false }}
-          className="text-3xl sm:text-4xl font-space font-medium mb-4 text-white"
+          className="text-2xl sm:text-3xl font-space font-medium mb-4 text-white"
         >
           {blog.title}
         </motion.h3>
