@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      { // for testing only
+        hostname: "picsum.photos",
+        protocol: "https"
+      }
+    ]
+  }
 };
 
 export default nextConfig;
