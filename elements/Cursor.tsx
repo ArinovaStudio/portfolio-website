@@ -1,3 +1,155 @@
+// "use client";
+
+// import { motion, useMotionValue, useSpring } from "framer-motion";
+// import { useEffect, useState } from "react";
+
+// // Mock cursor context for demo
+// const useCursor = () => {
+//   const [type, setType] = useState<"default" | "hover" | "label">("default");
+//   const [text, setText] = useState("");
+//   return {
+//     type,
+//     text,
+//     setCursor: (newType: "default" | "hover" | "label", newText?: string) => {
+//       setType(newType);
+//       if (newText) setText(newText);
+//     }
+//   };
+// };
+
+// export default function CustomCursor() {
+//   const { type, text, setCursor } = useCursor();
+//   const [isVisible, setIsVisible] = useState(true);
+
+//   // Mouse position
+//   const mouseX = useMotionValue(0);
+//   const mouseY = useMotionValue(0);
+
+//   // Smooth motion using springs
+//   const x = useSpring(mouseX, { damping: 50, stiffness: 200 });
+//   const y = useSpring(mouseY, { damping: 50, stiffness: 200 });
+
+//   // Hide default cursor globally
+//   useEffect(() => {
+//     document.body.style.cursor = "none";
+//     const style = document.createElement("style");
+//     style.innerHTML = `* { cursor: none !important; }`;
+//     document.head.appendChild(style);
+
+//     return () => {
+//       document.body.style.cursor = "auto";
+//       document.head.removeChild(style);
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     const move = (e: MouseEvent) => {
+//       mouseX.set(e.clientX);
+//       mouseY.set(e.clientY);
+//     };
+//     const hide = () => setIsVisible(false);
+//     const show = () => setIsVisible(true);
+
+//     window.addEventListener("mousemove", move);
+//     window.addEventListener("mouseenter", show);
+//     window.addEventListener("mouseleave", hide);
+
+//     return () => {
+//       window.removeEventListener("mousemove", move);
+//       window.removeEventListener("mouseenter", show);
+//       window.removeEventListener("mouseleave", hide);
+//     };
+//   }, [mouseX, mouseY]);
+
+//   // Auto hover detection
+//   useEffect(() => {
+//     let currentHovered: HTMLElement | null = null;
+
+//     const handleMove = (e: MouseEvent) => {
+//       if (type === "label") return;
+
+//       const el = e.target as HTMLElement;
+
+//       const interactive = el.closest(
+//         "a, button, input, textarea, select, [role='button'], .cursor-hover"
+//       ) as HTMLElement | null;
+
+//       if (interactive) {
+//         if (currentHovered !== interactive) {
+//           currentHovered = interactive;
+//           setCursor("hover");
+//         }
+//       } else {
+//         if (currentHovered) {
+//           currentHovered = null;
+//           setCursor("default");
+//         }
+//       }
+//     };
+
+//     document.addEventListener("mousemove", handleMove);
+//     return () => document.removeEventListener("mousemove", handleMove);
+//   }, [type, setCursor]);
+
+//   const variants = {
+//     default: { scale: 1 },
+//     hover: { scale: 1 },
+//     label: { scale: 1 },
+//   };
+
+//   return (
+//     <>
+//       <motion.div
+//         style={{
+//           x,
+//           y,
+//           position: "fixed",
+//           top: 0,
+//           left: 0,
+//           pointerEvents: "none",
+//           zIndex: 9999,
+//           translateX: "-50%",
+//           translateY: "-50%",
+//           display: isVisible ? "flex" : "none",
+//           justifyContent: "center",
+//           alignItems: "center",
+//           fontSize: "14px",
+//           fontWeight: 500,
+//           whiteSpace: "nowrap",
+//           mixBlendMode: type === "label" ? "normal" : "difference",
+//         }}
+//         variants={variants}
+//         animate={type}
+//         transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//         layout
+//       >
+//         {type === "label" ? (
+//           <motion.div
+//             layout
+//             className="bg-white/20 backdrop-blur-md border-2 border-white rounded-full text-xl font-medium px-4 py-2"
+//             transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//           >
+//             {text}
+//           </motion.div>
+//         ) : (
+//           <motion.div
+//             layoutId="innerBall"
+//             className="rounded-full bg-white relative"
+//             style={{
+//               width: type === "hover" ? 60 : 30,
+//               height: type === "hover" ? 60 : 30,
+//               borderWidth: type === "hover" ? 0 : 1,
+//               borderStyle: "solid",
+//               borderColor: "#fff",
+//             }}
+//             transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//           />
+//         )}
+//       </motion.div>
+//     </>
+//   );
+// }
+
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
@@ -90,6 +242,7 @@ export default function CustomCursor() {
         fontSize: "14px",
         fontWeight: 500,
         whiteSpace: "nowrap",
+        mixBlendMode: type === "label" ? "normal" : "difference",
       }}
       variants={variants}
       animate={type}
@@ -107,7 +260,7 @@ export default function CustomCursor() {
       ) : (
         <motion.div
           layoutId="innerBall"
-          className={`rounded-full bg-white relative z-[99999] mix-blend-difference`}
+          className={`rounded-full bg-white relative`}
           style={{
             width: type === "hover" ? 60 : 30,
             height: type === "hover" ? 60 : 30,
