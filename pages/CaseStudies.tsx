@@ -286,7 +286,7 @@ export default function CaseStudiesScroll() {
               aria-hidden
             />
           ))}
-          <p className="text-gray-500 text-sm ml-4">Scroll to navigate case studies</p>
+          {/* <p className="text-gray-500 text-sm ml-4">Scroll to navigate case studies</p> */}
         </div>
       </div>
     </div>

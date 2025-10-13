@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { useCursor } from './CursorContext'
+import {motion} from "framer-motion";
 
 function Products() {
     const {setCursor} = useCursor()
@@ -14,16 +15,21 @@ function Products() {
             slug: ""
         },
                 {
-            title: "string",
+            title: "string 2",
             slug: ""
         },
                 {
-            title: "string",
+            title: "string 3",
             slug: ""
         },
     ]
   return (
-    <div className="flex justify-start items-center gap-4 w-full h-1/6 mt-1 flex-wrap px-16">
+    <motion.div 
+    initial={{opacity: 0}}
+    whileInView={{opacity: 1}}
+    viewport={{once: false}}
+    transition={{delay: 0.8, duration: 1.2}}
+    className="flex justify-start items-center gap-4 w-full h-1/6 mt-1 flex-wrap px-16">
         {
             products.slice(0, 3).map((items) => (
         <div 
@@ -40,7 +46,7 @@ function Products() {
             ))
         }
 
-    </div>
+    </motion.div>
   )
 }
 
