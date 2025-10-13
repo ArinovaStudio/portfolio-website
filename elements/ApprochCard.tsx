@@ -8,7 +8,7 @@ function ApprochCard({id, title, image, description}: {
     description: string
 }) {
   return (
-    <div className="w-full h-full border-2 border-neutral-200 text-black rounded-xl p-6 flex justify-between flex-col items-start">
+    <div className="w-full h-full border-2 border-neutral-200 bg-white text-black rounded-xl p-6 flex justify-between flex-col items-start">
       <h1 className="text-3xl font-space font-semibold tracking-tight">
         {id}. {title}
       </h1>
@@ -22,7 +22,7 @@ function ApprochCard({id, title, image, description}: {
       />
       </div>
 
-      <p className="font-cursive italic">{description}</p>
+      <p className="font-cursive italic text-sm">{description}</p>
     </div>
   );
 }

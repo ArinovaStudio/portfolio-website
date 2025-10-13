@@ -11,6 +11,7 @@ import stratergies from "@/public/icons/stratergies.jpg"
 import experience from "@/public/icons/design.jpg"
 import code from "@/public/icons/code.jpg"
 import launch from "@/public/icons/launch.jpg"
+import Products from '@/elements/Products';
 
 
 
@@ -110,8 +111,15 @@ const cards = [
     title: "Launch & Elevate",
     description:
       "We launch your project strategically, track results, and evolve continuously for lasting growth.",
-    image: launch,
+    image: launch
   },
+    {
+    id: 7,
+    title: "Launch & Elevate",
+    description:
+      "We launch your project strategically, track results, and evolve continuously for lasting growth.",
+    image: launch
+  }
 ];
 
 
@@ -126,8 +134,6 @@ const ApproachScroll: React.FC = () => {
   // Header fade
   const headerOpacity = useTransform(scrollYProgress, [0.7, 0.85], [1, 0]);
 
-  // Text separation animation (10% to 25%)
-
   const scale = useTransform(scrollYProgress, [0.1, 0.25], [1, 0.6])
   const leftTextX = useTransform(scrollYProgress, [0.1, 0.25], [0, -100]);
   const rightTextX = useTransform(scrollYProgress, [0.1, 0.25], [0, 100]);
@@ -137,23 +143,26 @@ const ApproachScroll: React.FC = () => {
   const cardAppearScale = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
   const cardAppearOpacity = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
   
-  // Individual card progress tracking (25% to 85%)
-  // Each card gets equal time: 60% / 5 cards = 12% per card
-  const card1Opacity = useTransform(scrollYProgress, [0.25, 0.30, 0.37, 0.42], [1, 1, 1, 0]);
-  const card2Opacity = useTransform(scrollYProgress, [0.37, 0.42, 0.49, 0.54], [0, 1, 1, 0]);
-  const card3Opacity = useTransform(scrollYProgress, [0.49, 0.54, 0.61, 0.66], [0, 1, 1, 0]);
-  const card4Opacity = useTransform(scrollYProgress, [0.61, 0.66, 0.73, 0.78], [0, 1, 1, 0]);
-  const card5Opacity = useTransform(scrollYProgress, [0.73, 0.78, 0.85, 0.85], [0, 1, 1, 1]);
+
+const card1Opacity = useTransform(scrollYProgress, [0.25, 0.28, 0.35, 0.38], [1, 1, 1, 0]);
+const card2Opacity = useTransform(scrollYProgress, [0.35, 0.38, 0.45, 0.48], [0, 1, 1, 0]);
+const card3Opacity = useTransform(scrollYProgress, [0.45, 0.48, 0.55, 0.58], [0, 1, 1, 0]);
+const card4Opacity = useTransform(scrollYProgress, [0.55, 0.58, 0.65, 0.68], [0, 1, 1, 0]);
+const card5Opacity = useTransform(scrollYProgress, [0.65, 0.68, 0.75, 0.78], [0, 1, 1, 0]);
+const card6Opacity = useTransform(scrollYProgress, [0.75, 0.78, 0.85, 1], [0, 1, 1, 1]);
+const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0, 1, 1]);
+
+
   
   // Last card expansion (85% to 100%)
   const lastCardScale = useTransform(scrollYProgress, [0.85, 1], [1, 5]);
   const lastCardBorderRadius = useTransform(scrollYProgress, [0.85, 1], [24, 0]);
   const finalTextOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1]);
 
-  const cardOpacities = [card1Opacity, card2Opacity, card3Opacity, card4Opacity, card5Opacity];
+  const cardOpacities = [card1Opacity, card2Opacity, card3Opacity, card4Opacity, card5Opacity, card6Opacity, card7Opacity];
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: '600vh' }}>
+    <div ref={containerRef} className="relative" style={{ height: '800vh' }}>
       <div className="sticky top-0 h-screen w-screen overflow-hidden bg-background flex items-center justify-center">
         {/* Header - Above the main heading */}
         <motion.div 
@@ -205,7 +214,7 @@ const ApproachScroll: React.FC = () => {
             return (
               <motion.div
                 key={card.id}
-                className="absolute rounded-xl bg-white p-3.5 flex items-center justify-center"
+                className={`absolute rounded-xl bg-white p-3.5 flex items-center justify-center`}
                 style={{
                   width: 450,
                   height: 560,
@@ -224,15 +233,19 @@ const ApproachScroll: React.FC = () => {
                     />
                 ) : (
                   <motion.div
-                    className="absolute inset-0 flex items-center justify-center bg-white"
+                    className="absolute inset-0 flex items-center justify-center flex-col bg-white"
                     style={{
                       opacity: finalTextOpacity,
                       borderRadius: lastCardBorderRadius,
                     }}
                   >
-                    <p className="text-xs font-bold text-black font-unbounded">
-                        Products By US
+                    <p className="text-xs font-bold text-center text-black font-space capitalize">
+                        We Don't only help business <br />
+                        <span className='font-unbounded'>We Build Our own products also</span>
                     </p>
+
+                    <Products />
+                    <div className='text-xs scale-50 font-space text-right w-[37vw] text-black uppercase font-medium'>View all</div>
                   </motion.div>
                 )}
               </motion.div>

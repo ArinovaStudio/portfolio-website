@@ -252,7 +252,7 @@ export default function CustomCursor() {
       {type === "label" ? (
         <motion.div
           layout
-          className="bg-white/20 backdrop-blur-md border-2 border-white rounded-full text-xl font-unbounded font-medium px-4 py-2"
+          className="bg-white/20 backdrop-blur-lg border-2 border-white rounded-full text-2xl font-unbounded font-medium px-6 py-1 pt-1.5"
           transition={{ type: "spring", stiffness: 300, damping: 45 }}
         >
           {text}
