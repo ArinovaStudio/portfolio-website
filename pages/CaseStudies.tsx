@@ -9,9 +9,9 @@ export default function CaseStudiesScroll() {
   const caseStudies = [
     {
       id: 1,
-      business: "Xyz Business A",
+      business: "E-Commerce Platform",
       description:
-        "We Helped Xyz Business To Increase Their Digital Marketing Revenue In Abc Way",
+        "to revolutionize their online presence with a scalable, high-performance website that drove massive revenue growth through strategic UX optimization and conversion-focused design",
       percentage: "98%",
       image:
         "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=1600&fit=crop",
@@ -24,9 +24,9 @@ export default function CaseStudiesScroll() {
     },
     {
       id: 2,
-      business: "Xyz Business B",
+      business: "SaaS Startup",
       description:
-        "We Helped Xyz Business To Increase Their Conversion Rate With Creative Funnels",
+        "transform their product vision into a powerful web application with intuitive design and smart conversion funnels that dramatically increased user acquisition",
       percentage: "86%",
       image:
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=1600&fit=crop",
@@ -39,9 +39,9 @@ export default function CaseStudiesScroll() {
     },
     {
       id: 3,
-      business: "Xyz Business C",
+      business: "Tech Company",
       description:
-        "We Helped Xyz Business To Improve Retention Using Product & UX Improvements",
+        "elevate their digital experience through comprehensive product design and UX improvements, resulting in exceptional user retention and engagement metrics",
       percentage: "74%",
       image:
         "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=1600&fit=crop",
