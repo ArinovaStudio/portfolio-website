@@ -3,6 +3,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Asterisk } from 'lucide-react';
+import ApprochCard from '@/elements/ApprochCard';
+
+import core from "@/public/icons/compass.png"
+import audiance from "@/public/icons/audiance.jpg"
+import stratergies from "@/public/icons/stratergies.jpg"
+import experience from "@/public/icons/design.jpg"
+import code from "@/public/icons/code.jpg"
+import launch from "@/public/icons/launch.jpg"
+
 
 
 // Lenis smooth scroll implementation
@@ -59,64 +68,52 @@ const useLenis = () => {
   }, []);
 };
 
-interface Card {
-  id: number;
-  color: string;
-}
 
-export const cards = [
+const cards = [
   {
     id: 1,
     title: "Discover the Core",
     description:
       "We dive deep into your brand’s essence to uncover your story, purpose, and unique strengths.",
-    accentColor: "#7c3aed",
+    image: core,
   },
   {
     id: 2,
     title: "Decode the Audience",
     description:
       "We study your audience to reveal what drives their decisions and how to connect meaningfully.",
-    accentColor: "#0ea5e9",
+    image: audiance,
   },
   {
     id: 3,
     title: "Define the Strategy",
     description:
       "We craft a smart, actionable roadmap aligning your goals with real audience insights.",
-    accentColor: "#10b981",
+    image: stratergies,
   },
   {
     id: 4,
     title: "Design the Experience",
     description:
       "We turn insights into stunning visuals and seamless digital experiences that people love.",
-    accentColor: "#f59e0b",
+    image: experience,
   },
   {
     id: 5,
     title: "Develop & Refine",
     description:
       "We build with precision and optimize for speed, scalability, and flawless performance.",
-    accentColor: "#ef4444",
+    image: code,
   },
   {
     id: 6,
     title: "Launch & Elevate",
     description:
       "We launch your project strategically, track results, and evolve continuously for lasting growth.",
-    accentColor: "#8b5cf6",
+    image: launch,
   },
 ];
 
-
-// const cards: Card[] = [
-//   { id: 1, color: '#3b82f6' }, // Blue
-//   { id: 2, color: '#ef4444' }, // Red
-//   { id: 3, color: '#10b981' }, // Green
-//   { id: 4, color: '#f59e0b' }, // Orange
-//   { id: 5, color: '#8b5cf6' }, // Purple
-// ];
 
 const ApproachScroll: React.FC = () => {
   useLenis();
@@ -208,11 +205,10 @@ const ApproachScroll: React.FC = () => {
             return (
               <motion.div
                 key={card.id}
-                className="absolute rounded-3xl shadow-2xl flex items-center justify-center"
+                className="absolute rounded-xl bg-white p-3.5 flex items-center justify-center"
                 style={{
                   width: 450,
                   height: 560,
-                //   backgroundColor: card.color,
                   scale: isLast ? lastCardScale : 1,
                   borderRadius: isLast ? lastCardBorderRadius : 24,
                   opacity: cardOpacities[index],
@@ -220,7 +216,12 @@ const ApproachScroll: React.FC = () => {
                 }}
               >
                 {!isLast ? (
-                    <></>
+                    <ApprochCard 
+                    id={card.id}
+                    description={card.description}
+                    title={card.title}
+                    image={card.image}
+                    />
                 ) : (
                   <motion.div
                     className="absolute inset-0 flex items-center justify-center bg-white"
