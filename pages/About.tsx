@@ -10,21 +10,18 @@ export default function AboutCompany() {
     {
       id: "mission",
       title: "OUR MISSION",
-      content:
-        "Figma ipsum component variant main layer. Prototype opacity arrange union shadow comment. Distribute ellipse link text invite. Polygon flatten slice vertical line arrange content flatten. Share layout hand duplicate align star shadow rectangle. Line.",
+      content: "To bridge the gap between great ideas and exceptional digital execution. We transform complex business challenges into intuitive, high-performing websites that not only look stunning but also drive meaningful results for our clients."
     },
     {
       id: "vision",
       title: "OUR VISION",
-      content:
-        "Figma ipsum component variant main layer. Prototype opacity arrange union shadow comment. Distribute ellipse link text invite. Polygon flatten slice vertical line arrange content flatten. Share layout hand duplicate align star shadow rectangle. Line.",
+      content: "To become the most trusted digital partner for businesses seeking to make their mark online. We envision a future where every company has access to premium web solutions that amplify their unique voice and accelerate their growth journey."
     },
     {
       id: "history",
-      title: "OUR HISTORY",
-      content:
-        "Figma ipsum component variant main layer. Prototype opacity arrange union shadow comment. Distribute ellipse link text invite. Polygon flatten slice vertical line arrange content flatten. Share layout hand duplicate align star shadow rectangle. Line.",
-    },
+      title: "OUR JOURNEY",
+      content: "Our story began with a simple realization: too many businesses were settling for mediocre websites that didn't reflect their true potential. Fueled by this gap in the market, we set out to create a studio that prioritizes quality, collaboration, and client success above all else. Today, we continue this mission with every project we undertake."
+    }
   ];
 
   const toggleSection = (id: string) => {
@@ -56,10 +53,7 @@ export default function AboutCompany() {
             viewport={{ once: false, amount: 0.2 }}
           >
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-700 font-unbounded font-light leading-relaxed">
-              At Arinova Studio, we design and build digital products while also
-              providing top-notch website development services. From idea to
-              launch, we help businesses create powerful, user-friendly, and
-              scalable web solutions that drive growth.
+              At Arinova Studio, we're more than just developers - we're your partners in digital growth. We combine strategic thinking with technical expertise to build websites that tell your story, engage your audience, and deliver tangible business outcomes.
             </p>
 
             {/* Animated Button */}
