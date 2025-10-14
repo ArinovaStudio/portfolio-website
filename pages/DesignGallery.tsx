@@ -182,7 +182,7 @@ function DesignGallery() {
     const finalMessageScale = useTransform(scrollYProgress, [imagesEndProgress, imagesEndProgress + 0.1], [0.8, 1]);
 
     return (
-        <div ref={containerRef} className='relative' style={{ height: '600vh' }}>
+        <div id='design-gallery' ref={containerRef} className='relative' style={{ height: '600vh' }}>
             <div className='sticky top-0 min-h-screen h-screen w-screen bg-background flex justify-center items-center overflow-hidden'>
                 
                 {/* Images Layer - Behind text */}

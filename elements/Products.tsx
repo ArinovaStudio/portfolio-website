@@ -29,7 +29,7 @@ function Products() {
     whileInView={{opacity: 1}}
     viewport={{once: false}}
     transition={{delay: 0.8, duration: 1.2}}
-    className="flex justify-start items-center gap-4 w-full h-1/6 mt-1 flex-wrap px-16">
+    className="flex sm:justify-start sm:items-center gap-4 w-full h-1/6 mt-1 flex-wrap sm:px-16 px-8">
         {
             products.slice(0, 3).map((items, idx) => (
         <div 

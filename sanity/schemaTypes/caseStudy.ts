@@ -2,7 +2,7 @@ import {PlayIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
 export const caseType = defineType({
-  name: 'case-studies',
+  name: 'caseStudies',
   title: 'Case Studies',
   type: 'document',
   icon: PlayIcon,

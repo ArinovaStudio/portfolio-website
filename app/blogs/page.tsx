@@ -1,42 +1,67 @@
+"use client";
+
+
 import Cards from '@/elements/Cards'
 import Footer from '@/elements/Footer'
 import Navbar from '@/elements/Navbar'
+import MiniLoader from '@/elements/SmallLoader'
 import Title from '@/elements/Title'
-import React from 'react'
+import { fetchData } from '@/sanity/lib/fetch'
+import React, { useEffect, useState, useTransition } from 'react'
 
 
-const blogs = [
-  {
-    id: 1,
-    image: "https://picsum.photos/1080/1080", // Replace with your real image
-    author: "Adarsh Pandit",
-    title: "Title Of The Blog",
-    description:
-      "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
-    date: "02/10/2025",
-  },
-  {
-    id: 2,
-    image: "https://picsum.photos/1080/1080",
-    author: "Adarsh Pandit",
-    title: "Title Of The Blog",
-    description:
-      "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
-    date: "02/10/2025",
-  },
-  {
-    id: 3,
-    image: "https://picsum.photos/1080/1080",
-    author: "Adarsh Pandit",
-    title: "Title Of The Blog",
-    description:
-      "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
-    date: "02/10/2025",
-  },
-];
+// const blogs = [
+//   {
+//     id: 1,
+//     image: "https://picsum.photos/1080/1080", // Replace with your real image
+//     author: "Adarsh Pandit",
+//     title: "Title Of The Blog",
+//     description:
+//       "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
+//     date: "02/10/2025",
+//   },
+//   {
+//     id: 2,
+//     image: "https://picsum.photos/1080/1080",
+//     author: "Adarsh Pandit",
+//     title: "Title Of The Blog",
+//     description:
+//       "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
+//     date: "02/10/2025",
+//   },
+//   {
+//     id: 3,
+//     image: "https://picsum.photos/1080/1080",
+//     author: "Adarsh Pandit",
+//     title: "Title Of The Blog",
+//     description:
+//       "Figma Ipsum Component Variant Main Layer. Background Ipsum List Edit Selection Share Figma Stroke. Strikethrough Pixel Flatten Scale...",
+//     date: "02/10/2025",
+//   },
+// ];
 
 
 function page() {
+    const [blogs, setCaseStudies] = useState<any>([])
+    const [transition, startTransition] = useTransition();
+  
+    const getData = () => startTransition(async () => {
+      const data = await fetchData("posts")
+      if (data) {
+        console.log(data);
+        setCaseStudies(data)
+      }
+    })
+  
+    useEffect(() => {
+      getData()
+    }, [])
+  
+    if (transition) {
+      return (
+        <MiniLoader />
+      )
+    }
   return (
     <>
         <Navbar />
@@ -48,7 +73,7 @@ function page() {
 
         <div className="flex flex-wrap mx-auto my-10 justify-center items-center sm:items-start sm:px-14 px-4 pr-0 pl-8 gap-4 sm:gap-28">
         {
-            blogs.map((items, idx) => (
+            blogs.map((items: any, idx: number) => (
                 <div className="sm:w-1/4 w-full">
                 <Cards 
                 blog={items}

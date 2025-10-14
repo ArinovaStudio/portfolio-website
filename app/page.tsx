@@ -6,6 +6,7 @@ import Blogs from "@/pages/Blogs";
 import CaseStudiesScroll from "@/pages/CaseStudies";
 import Contact from "@/pages/Contacts";
 import DesignGallery from "@/pages/DesignGallery";
+import Hero from "@/pages/Hero";
 import Portfolio from "@/pages/Portfolio";
 import Services from "@/pages/Services";
 import TestimonialsCarousel from "@/pages/testimonials";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
     <Navbar />
+    <Hero />
     <Approch />
     <Portfolio />
     <AboutCompany />

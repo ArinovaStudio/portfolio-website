@@ -181,7 +181,7 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
           className="absolute left-20 text-white z-10"
           style={{ x: leftTextX, opacity: textOpacity, scale: scale }}
         >
-          <h1 className="text-7xl font-stretch uppercase leading-tight">
+          <h1 className="text-3xl sm:text-7xl -ml-6 sm:ml-0 font-stretch uppercase leading-tight">
             Your Ideas
             <br />
             Into Bbrand
@@ -193,7 +193,7 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
           className="absolute right-20 text-white z-10"
           style={{ x: rightTextX, opacity: textOpacity, scale: scale }}
         >
-          <h1 className="text-7xl font-stretch uppercase leading-tight">
+          <h1 className="text-3xl sm:text-7xl mt-44 -ml-40 sm:ml-0 sm:mt-0 font-stretch uppercase leading-tight">
             Transform
             <br />
             Stories
@@ -202,7 +202,7 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
 
         {/* Card Container */}
         <motion.div 
-          className="relative w-[500px] h-[600px] flex items-center justify-center"
+          className="relative w-[90%] h-[400px] sm:w-[500px] sm:h-[600px] flex items-center justify-center"
           style={{
             scale: cardAppearScale,
             opacity: cardAppearOpacity,
@@ -214,10 +214,8 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
             return (
               <motion.div
                 key={card.id}
-                className={`absolute rounded-xl bg-white p-3.5 flex items-center justify-center`}
+                className={`absolute w-full h-[500px] sm:w-[450px] sm:h-[560px] rounded-xl bg-white p-3.5 flex items-center justify-center`}
                 style={{
-                  width: 450,
-                  height: 560,
                   scale: isLast ? lastCardScale : 1,
                   borderRadius: isLast ? lastCardBorderRadius : 24,
                   opacity: cardOpacities[index],
@@ -239,7 +237,7 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
                       borderRadius: lastCardBorderRadius,
                     }}
                   >
-                    <p className="text-xs font-bold text-center text-black font-space capitalize">
+                    <p className="text-xs font-bold text-center text-black font-space capitalize scale-[0.35] sm:scale-100">
                         We Don't only help business <br />
                         <span className='font-unbounded'>We Build Our own products also</span>
                     </p>

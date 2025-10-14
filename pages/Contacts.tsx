@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -22,7 +22,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>(
     {}
   );
-
+  const [transition, startTransition] = useTransition()
   const faqs = [
     "What are the list of services you have?",
     "Do you provide full project support?",
@@ -59,14 +59,26 @@ export default function Contact() {
     return Object.keys(next).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = (e: React.FormEvent) => startTransition(async () => {
     e.preventDefault();
     if (!validate()) return;
-    console.log("Submitted form:", form);
-    setForm({ fullName: "", email: "", phone: "", message: "" });
+    
+    const me = await fetch("/api/send-mail", {
+      method: "POST",
+      body: JSON.stringify({form, type: "me"})
+    })
+    if (me.status === 200) {
+          const user = await fetch("/api/send-mail", {
+      method: "POST",
+      body: JSON.stringify({form, type: "user"})
+    })
+    if (user.status === 200) {
+      setForm({ fullName: "", email: "", phone: "", message: "" });
+    }
+  }
     setErrors({});
-    alert("Message sent (demo).");
-  };
+  });
 
   // Animation Variants
   const fadeUp = {
@@ -79,7 +91,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="bg-[#0b0b0b] text-white px-6 sm:px-10 md:px-16 lg:px-20 py-16 md:py-20 min-h-screen overflow-hidden">
+    <section id="contact-info" className="bg-[#0b0b0b] text-white px-6 sm:px-10 md:px-16 lg:px-20 py-16 md:py-20 min-h-screen overflow-hidden">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* LEFT FAQ */}
         <motion.div
@@ -226,9 +238,9 @@ export default function Contact() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 200 }}
-                className="w-full bg-white text-black font-semibold py-4 text-lg tracking-wide"
+                className={`w-full bg-white text-black font-semibold py-4 text-lg tracking-wide ${transition ? "opacity-55" : "opacity-100"}`}
               >
-                Send Message
+                {transition ? "Sending..." : "Send Message"}
               </motion.button>
             </motion.div>
           </motion.form>

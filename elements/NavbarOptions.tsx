@@ -12,10 +12,10 @@ interface Tabs {
 function NavbarOptions({ close }: { close: (val: boolean) => void }) {
   const tabs: Tabs[] = [
     { title: "Home", link: "/" },
-    { title: "About", link: "/#about" },
-    { title: "Blogs", link: "/#blogs" },
-    { title: "Portfolio", link: "/#portfolio" },
-    { title: "Case Studies", link: "/#case-studies" },
+    { title: "About", link: "/about-us" },
+    { title: "Blogs", link: "/blogs" },
+    { title: "Portfolio", link: "/portfolio" },
+    { title: "Case Studies", link: "/case-studies" },
     { title: "Design Gallery", link: "/#design-gallery" },
     { title: "Contact Info", link: "/#contact-info" },
   ];

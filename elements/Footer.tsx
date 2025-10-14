@@ -2,15 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, X } from "lucide-react";
+import {FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn} from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 export default function Footer() {
   const links = [
-    { title: "Home", link: "#" },
-    { title: "Portfolio", link: "#" },
-    { title: "Case Studies", link: "#" },
-    { title: "Design gallery", link: "#" },
+    { title: "Home", link: "/" },
+    { title: "Portfolio", link: "/portfolio" },
+    { title: "Case Studies", link: "/case-studies" },
+    { title: "Design gallery", link: "/#design-gallery" },
   ];
 
   const connect = [
@@ -194,23 +194,6 @@ export default function Footer() {
             />{" "}
           </svg>{" "}
         </motion.div>
-        {/* <div className="my-8 md:my-10 opacity-60">
-          <svg width="1680" height="3" viewBox="0 0 1680 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* <motion.line
-              x1="1"
-              y1="1.55347"
-              x2="1679"
-              y2="1.55347"
-              stroke="#ADADAD"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeDasharray="24 24"
-              initial={{ pathLength: 0, strokeDashoffset: 48, opacity: 0 }}
-              whileInView={{ pathLength: 1, strokeDashoffset: 0, opacity: 1 }}
-              transition={{ duration: 1.8, delay: 1, ease: "easeInOut" }}
-            /> 
-          </svg>
-        </div> */}
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-neutral-400 px-2 md:px-10">
           <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-8">
@@ -242,14 +225,14 @@ export default function Footer() {
             viewport={{ once: false }}
           >
             {[
-              { Icon: Facebook, label: "Facebook" },
-              { Icon: X, label: "X / Twitter" },
-              { Icon: Instagram, label: "Instagram" },
-              { Icon: Linkedin, label: "LinkedIn" },
-            ].map(({ Icon, label }) => (
+              { Icon: FaFacebookF, url: "https://www.facebook.com/share/1BR3tmRpMs", label: "Facebook" },
+              { Icon: FaXTwitter, url: "https://x.com/arinovaStudio", label: "X / Twitter" },
+              { Icon: FaInstagram, url: "https://instagram.com/arinova.studio", label: "Instagram" },
+              { Icon: FaLinkedinIn, url: "https://linkedin.com/company/arinova-studio", label: "LinkedIn" },
+            ].map(({ Icon, label, url }) => (
               <Link
                 key={label}
-                href="#"
+                href={url}
                 className="p-1 rounded-md"
                 aria-label={label}
               >

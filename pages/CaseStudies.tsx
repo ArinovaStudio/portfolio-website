@@ -159,8 +159,8 @@ export default function CaseStudiesScroll() {
                       className={`case-study-item border-b-2 border-gray-600 py-4 pt-12 transition-all duration-700 mt-6`}
                     >
                       <div className="mb-4">
-                        <div className="flex justify-between items-end">
-                          <div className="w-3/5">
+                        <div className="flex justify-between items-end flex-col sm:flex-row">
+                          <div className="w-full sm:w-3/5">
                             <p className="text-gray-400 text-base font-dm mb-2">
                               We Helped <span className="text-white">{study.business}</span>{" "}
                               {study.description}
@@ -286,7 +286,6 @@ export default function CaseStudiesScroll() {
               aria-hidden
             />
           ))}
-          {/* <p className="text-gray-500 text-sm ml-4">Scroll to navigate case studies</p> */}
         </div>
       </div>
     </div>

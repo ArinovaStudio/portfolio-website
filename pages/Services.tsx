@@ -9,32 +9,61 @@ interface ServiceImages {
 }
 
 function Services() {
-    const services: string[] = ["UX Research", "UI Design", "Website Development", "Apps Development"];
     const [currentView, setCurrentView] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    
-    const serviceImages: ServiceImages = {
-        "UX Research": [
-            "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop"
-        ],
-        "UI Design": [
-            "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop"
-        ],
-        "Website Development": [
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop"
-        ],
-        "Apps Development": [
-            "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=400&h=400&fit=crop"
-        ]
-    };
+const services: string[] = [
+  "Website Development",
+  "Mobile App Development",
+  "Software Tools",
+  "UI/UX Design",
+  "3D Animation",
+  "AI/ML",
+  "E-commerce Platforms",
+  "Product Design"
+];
+
+const serviceImages: Record<string, string[]> = {
+  "Website Development": [
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop"
+  ],
+  "Mobile App Development": [
+    "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=400&h=400&fit=crop"
+  ],
+  "Software Tools": [
+    "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+  ],
+  "UI/UX Design": [
+    "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1551434678-e076ca223a692?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop"
+  ],
+  "3D Animation": [
+    "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+  ],
+  "AI/ML": [
+    "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+  ],
+  "E-commerce Platforms": [
+    "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+  ],
+  "Product Design": [
+    "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+  ]
+};
 
     const { scrollYProgress } = useScroll({
         target: containerRef,

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 * {
   cursor: none;
@@ -8,6 +9,7 @@
     --background: #0B0B0B;
     --foreground: #ededed;
     --primary: #8a2cff;
+
 }
 
 @theme inline {
@@ -19,13 +21,35 @@
   --font-unbounded: var(--font-unbounded);
   --font-cursive: var(--font-mer);
   --font-tall: var(--font-bayon);
-  --color-primary: var(--primary)
+  --color-primary: var(--primary);
+
+}
+
+body {
+  overflow-x: hidden;
+  cursor: none;
 }
 
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  overflow-x: hidden;
-  cursor: none;
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+@theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
 }
