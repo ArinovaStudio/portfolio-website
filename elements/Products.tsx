@@ -31,9 +31,9 @@ function Products() {
     transition={{delay: 0.8, duration: 1.2}}
     className="flex justify-start items-center gap-4 w-full h-1/6 mt-1 flex-wrap px-16">
         {
-            products.slice(0, 3).map((items) => (
+            products.slice(0, 3).map((items, idx) => (
         <div 
-        key={items.title}
+        key={idx}
         onMouseEnter={() => setCursor("label", items.title)}
         onMouseLeave={() => setCursor("default")}
         className="w-24 h-full">
