@@ -7,6 +7,10 @@ export const caseType = defineType({
   type: 'document',
   icon: PlayIcon,
   fields: [
+        defineField({
+      name: 'businessName',
+      type: 'string',
+    }),
     defineField({
       name: 'title',
       type: 'string',
@@ -19,7 +23,7 @@ export const caseType = defineType({
       },
     }),
     defineField({
-        name: "mini-description",
+        name: "miniDescription",
         type: "string",
     }),
     defineField({
@@ -71,16 +75,5 @@ export const caseType = defineType({
   ],
   validation: Rule => Rule.max(4).warning('You can only add up to 4 key-value pairs'),
 }),
-  ],
-  preview: {
-    select: {
-      title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
-    },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
-    },
-  },
+  ]
 })

@@ -1,58 +1,35 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useTransition } from "react";
 import { motion, useScroll } from "framer-motion";
 import { useCursor } from "@/elements/CursorContext";
+import { useRouter } from "next/navigation";
+import { fetchData } from "@/sanity/lib/fetch";
+import MiniLoader from "@/elements/SmallLoader";
+import { urlFor } from "@/sanity/lib/image";
 
 export default function CaseStudiesScroll() {
+    const [caseStudies, setCaseStudies] = useState([])
+    
+  const router = useRouter();
+
+  const getData = async () => {
+    const data = await fetchData("caseStudies")
+    if (data) {
+      setCaseStudies(data)
+    }
+  }
+
   const {setCursor} = useCursor()
-  const caseStudies = [
-    {
-      id: 1,
-      business: "E-Commerce Platform",
-      description:
-        "to revolutionize their online presence with a scalable, high-performance website that drove massive revenue growth through strategic UX optimization and conversion-focused design",
-      percentage: "98%",
-      image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=1600&fit=crop",
-      stats: [
-        { label: "Revenue Growth", value: "98%" },
-        { label: "Conversion ↑", value: "45%" },
-        { label: "ROI", value: "6.2x" },
-        { label: "Time to Value", value: "10 weeks" },
-      ],
-    },
-    {
-      id: 2,
-      business: "SaaS Startup",
-      description:
-        "transform their product vision into a powerful web application with intuitive design and smart conversion funnels that dramatically increased user acquisition",
-      percentage: "86%",
-      image:
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=1600&fit=crop",
-      stats: [
-        { label: "Revenue Growth", value: "86%" },
-        { label: "Conversion ↑", value: "33%" },
-        { label: "ROI", value: "4.8x" },
-        { label: "Time to Value", value: "8 weeks" },
-      ],
-    },
-    {
-      id: 3,
-      business: "Tech Company",
-      description:
-        "elevate their digital experience through comprehensive product design and UX improvements, resulting in exceptional user retention and engagement metrics",
-      percentage: "74%",
-      image:
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=1600&fit=crop",
-      stats: [
-        { label: "Retention ↑", value: "74%" },
-        { label: "Engagement ↑", value: "52%" },
-        { label: "Churn ↓", value: "18%" },
-        { label: "Time to Value", value: "6 weeks" },
-      ],
-    },
-  ];
+  useEffect(() => {
+    getData()
+  }, [])
+
+  // if (transition) {
+  //   return (
+  //     <MiniLoader />
+  //   )
+  // }
 
   const panels = caseStudies.length; // number of steps to scroll through
   const pinRef = useRef<HTMLDivElement | null>(null);
@@ -146,7 +123,7 @@ export default function CaseStudiesScroll() {
                 const isActive = i === active;
                 return (
                   <motion.div
-                    key={study.id}
+                    key={study._id}
                     className="mb-6"
                     initial={false}
                     animate={isActive ? "enter" : "exit"}
@@ -155,20 +132,20 @@ export default function CaseStudiesScroll() {
                     style={{ display: isActive ? "block" : "none" }}
                   >
                     <div
-                      data-id={study.id}
+                      data-id={study._id}
                       className={`case-study-item border-b-2 border-gray-600 py-4 pt-12 transition-all duration-700 mt-6`}
                     >
                       <div className="mb-4">
                         <div className="flex justify-between items-end flex-col sm:flex-row">
                           <div className="w-full sm:w-3/5">
                             <p className="text-gray-400 text-base font-dm mb-2">
-                              We Helped <span className="text-white">{study.business}</span>{" "}
-                              {study.description}
+                              We Helped <span className="text-white">{study.title}</span>{" "}
+                              {study.miniDescription}
                             </p>
                           </div>
 
                           <div className="text-7xl md:text-7xl font-semibold font-unbounded">
-                            {study.percentage}
+                            {study.percentage}%
                           </div>
                         </div>
                       </div>
@@ -182,7 +159,7 @@ export default function CaseStudiesScroll() {
                       >
                         {study.stats.map((s, idx) => (
                           <motion.div
-                            key={s.label}
+                            key={idx}
                             variants={statItem as any}
                             className="bg-transparent p-3 rounded-md flex flex-col"
                           >
@@ -211,7 +188,7 @@ export default function CaseStudiesScroll() {
                                 {s.value}
                               </div>
                             )}
-                            <div className="text-sm text-gray-400 mt-1">{s.label}</div>
+                            <div className="text-sm text-gray-400 mt-1">{s.key}</div>
                           </motion.div>
                         ))}
                       </motion.div>
@@ -229,7 +206,7 @@ export default function CaseStudiesScroll() {
                   <motion.div
                   onMouseEnter={() => setCursor("label", "Xyz business")}
                   onMouseLeave={() => setCursor("default")}
-                    key={`svg-${study.id}`}
+                    key={`svg-${study._id}`}
                     initial={false}
                     animate={isActive ? "enter" : "exit"}
                     variants={rightVariants as any}
@@ -249,20 +226,20 @@ export default function CaseStudiesScroll() {
                       className="max-w-full h-auto md:h-[83vh] block"
                     >
                       <defs>
-                        <clipPath id={`imageClip-${study.id}`}>
+                        <clipPath id={`imageClip-${i}`}>
                           <path d="M0 0H397.396L471.938 65.1907L545 135.32V725H114.529L55.5 667.318L0 609.435V0Z" />
                         </clipPath>
-                        <filter id={`grayscale-${study.id}`}>
+                        <filter id={`grayscale-${i}`}>
                           <feColorMatrix type="saturate" values="0" />
                         </filter>
                       </defs>
 
                       <image
-                        href={study.image}
+                        href={urlFor(study.mainImage).url()}
                         width="545"
                         height="725"
-                        clipPath={`url(#imageClip-${study.id})`}
-                        filter={`url(#grayscale-${study.id})`}
+                        clipPath={`url(#imageClip-${i})`}
+                        filter={`url(#grayscale-${i})`}
                         preserveAspectRatio="xMidYMid slice"
                       />
                     </svg>

@@ -11,6 +11,10 @@ export const postType = defineType({
       name: 'title',
       type: 'string',
     }),
+        defineField({
+      name: 'miniDescription',
+      type: 'string',
+    }),
     defineField({
       name: 'slug',
       type: 'slug',

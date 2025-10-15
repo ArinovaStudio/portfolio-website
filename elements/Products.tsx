@@ -1,28 +1,32 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { useCursor } from './CursorContext'
 import {motion} from "framer-motion";
+import { fetchData } from '@/sanity/lib/fetch';
+import { urlFor } from '@/sanity/lib/image';
+import MiniLoader from './SmallLoader';
 
 function Products() {
     const {setCursor} = useCursor()
-    const products = [
-        {
-            title: "string",
-            slug: ""
-        },
-                {
-            title: "string",
-            slug: ""
-        },
-                {
-            title: "string 2",
-            slug: ""
-        },
-                {
-            title: "string 3",
-            slug: ""
-        },
-    ]
+        const [products, setProducts] = useState<any>([])
+        const [transition, startTransition] = useTransition();
+  
+        const getData = () => startTransition(async () => {
+          const data = await fetchData("products")
+          if (data) {
+            setProducts(data)
+          }
+        })
+      
+        useEffect(() => {
+          getData()
+        }, [])
+      
+  if (transition) {
+    return (
+      <MiniLoader />
+    )
+  }
   return (
     <motion.div 
     initial={{opacity: 0}}
@@ -38,7 +42,7 @@ function Products() {
         onMouseLeave={() => setCursor("default")}
         className="w-24 h-full">
             <img
-            src={"https://picsum.photos/1080/1080"}
+            src={urlFor(items.mainImage).url()}
             alt='image'
             className='w-full object-cover h-full'
             />

@@ -18,6 +18,11 @@ export const portfolioType = defineType({
         source: "title",
       },
     }),
+        defineField({
+      name: "miniDescription",
+      title: "Mini Description",
+      type: "string",
+    }),
     defineField({
       name: "category",
       type: "string",

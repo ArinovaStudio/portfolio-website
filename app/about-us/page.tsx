@@ -5,13 +5,119 @@ import { LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import bulb from "@/public/assets/bulb.jpg";
+
+function ResponsiveGrid() {
+  return (
+    <div className="flex h-[70vh] px-14 mb-14 w-full items-center justify-center max-md:h-auto max-md:px-4 max-md:py-8">
+      <div className="grid h-full w-full gap-6 p-2 grid-cols-4 grid-rows-4 shadow-md max-md:grid-cols-1 max-md:grid-rows-none max-md:h-auto">
+        {" "}
+        <div className="col-span-1 row-span-2 bg-white shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
+          {" "}
+          <Image
+            src={"https://picsum.photos/1080/1080"}
+            alt="image"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover"
+          />{" "}
+        </div>{" "}
+        <div className="col-span-2 row-span-2 bg-white shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-48">
+          {" "}
+          <h1 className="text-black text-7xl font-stretch font-bold uppercase text-center max-md:text-4xl">
+            Arinova Studio
+          </h1>{" "}
+        </div>{" "}
+        <div className="col-span-1 row-span-3 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-80">
+          {" "}
+          <Image
+            src={"https://picsum.photos/1080/1080"}
+            alt="image"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover"
+          />{" "}
+        </div>{" "}
+        <div className="col-span-2 row-span-2 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
+          {" "}
+          <Image
+            src={"https://picsum.photos/1080/1080"}
+            alt="image"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover"
+          />{" "}
+        </div>{" "}
+        <div className="col-span-1 row-span-2 bg-white text-neutral-800 shadow-md flex items-start justify-center px-4 py-4 font-space text-lg max-md:col-span-1 max-md:row-span-1 max-md:h-auto max-md:min-h-32">
+          {" "}
+          Arinova Studio blends creativity with precision to craft digital
+          experiences that inspire. Our approach is simple — design beautifully,
+          build thoughtfully, and innovate with intent. Every creation reflects
+          clarity, balance, and purpose.
+        </div>{" "}
+        <Link
+          href={"/#contact-info"}
+          className="col-span-1 row-span-1 bg-white text-black font-space text-3xl font-bold uppercase hover:text-5xl transition-all duration-300 cursor-hover shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-20 max-md:text-2xl max-md:hover:text-3xl"
+        >
+          {" "}
+          Get Quote{" "}
+        </Link>{" "}
+      </div>
+    </div>
+  );
+}
 
 function page() {
+  const sections = [
+    {
+      id: "mission",
+      title: "OUR\nMISSION",
+      content:
+        "To bridge the gap between great ideas and exceptional digital execution. We transform complex business challenges into intuitive, high-performing websites that not only look stunning but also drive meaningful results for our clients.",
+    },
+    {
+      id: "vision",
+      title: "OUR\nVISION",
+      content:
+        "To become the most trusted digital partner for businesses seeking to make their mark online. We envision a future where every company has access to premium web solutions that amplify their unique voice and accelerate their growth journey.",
+    },
+    {
+      id: "history",
+      title: "OUR\nJOURNEY",
+      content:
+        "Our story began with a simple realization: too many businesses were settling for mediocre websites that didn't reflect their true potential. Fueled by this gap in the market, we set out to create a studio that prioritizes quality, collaboration, and client success.",
+    },
+  ];
+
   const inNumbers = [
-    { title: "Successful Projects", number: 0, symbol: "", description: "" },
-    { title: "Satisfied Clients", number: 0, symbol: "", description: "" },
-    { title: "Avg. increase in sales", number: 0, symbol: "", description: "" },
-    { title: "Cost Effeciency", number: 0, symbol: "", description: "" },
+    {
+      title: "Successful Projects",
+      number: 48,
+      symbol: "+",
+      description:
+        "Delivering impactful digital solutions that combine creativity, precision, and innovation to help brands stand out in a competitive world.",
+    },
+    {
+      title: "Satisfied Clients",
+      number: 35,
+      symbol: "+",
+      description:
+        "Building long-term partnerships through trust, design excellence, and a commitment to crafting experiences that truly make a difference.",
+    },
+    {
+      title: "Avg. increase in sales",
+      number: 62,
+      symbol: "%",
+      description:
+        "Helping businesses achieve measurable growth through strategic design, seamless functionality, and a user-first digital approach.",
+    },
+    {
+      title: "Cost Effeciency",
+      number: 45,
+      symbol: "%",
+      description:
+        "Optimizing resources and development processes to ensure maximum value, high performance, and sustainable digital success.",
+    },
   ];
 
   return (
@@ -26,93 +132,19 @@ function page() {
         <h1 className="font-unbounded text-3xl uppercase sm:text-4xl md:text-5xl text-white font-bold pt-6 pb-12 sm:pb-16 text-center md:text-left">
           Turning Visulization into reality
         </h1>
-        <div className="flex h-[70vh] px-14 mb-14 w-full items-center justify-center">
-          <div className="grid h-full w-full gap-6 p-2 grid-cols-4 grid-rows-4 shadow-md">
-            {" "}
-            <div className="col-span-1 row-span-2 bg-white shadow-md flex items-center justify-center">
-              {" "}
-              <Image
-                src={"https://picsum.photos/1080/1080"}
-                alt="image"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
-              />{" "}
-            </div>{" "}
-            <div className="col-span-2 row-span-2 bg-white shadow-md flex items-center justify-center">
-              {" "}
-              <h1 className="text-black text-7xl font-stretch font-bold uppercase text-center">
-                Arinova Studio
-              </h1>{" "}
-            </div>{" "}
-            <div className="col-span-1 row-span-3 bg-white text-black shadow-md flex items-center justify-center">
-              {" "}
-              <Image
-                src={"https://picsum.photos/1080/1080"}
-                alt="image"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
-              />{" "}
-            </div>{" "}
-            <div className="col-span-2 row-span-2 bg-white text-black shadow-md flex items-center justify-center">
-              {" "}
-              <Image
-                src={"https://picsum.photos/1080/1080"}
-                alt="image"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
-              />{" "}
-            </div>{" "}
-            <div className="col-span-1 row-span-2 bg-white text-neutral-800 shadow-md flex items-start justify-center px-4 py-4 font-space text-base">
-              {" "}
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero
-              culpa dolore, totam voluptatum harum hic quidem facere quae
-              distinctio iste quos tempore iusto deserunt! Recusandae fugit
-              doloribus dicta fuga dolorum!{" "}
-            </div>{" "}
-            <div className="col-span-1 row-span-1 bg-white text-black font-space text-3xl font-bold uppercase hover:text-5xl transition-all duration-300 cursor-hover shadow-md flex items-center justify-center">
-              {" "}
-              Get Quote{" "}
-            </div>{" "}
-          </div>
-        </div>
-
+        <ResponsiveGrid />
         {/* MISSION / VISION / HISTORY */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-0">
-          <div className="md:w-1/3">
-            <h1 className="text-white uppercase text-5xl sm:text-6xl md:text-7xl font-unbounded font-bold">
-              OUR Mission
-            </h1>
-            <p className="text-base sm:text-lg mt-4 font-dm text-neutral-400 md:w-3/4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Molestiae beatae, blanditiis placeat vitae reprehenderit quibusdam
-              labore distinctio at.
-            </p>
-          </div>
-
-          <div className="md:w-1/3">
-            <h1 className="text-white uppercase text-5xl sm:text-6xl md:text-7xl font-unbounded font-bold">
-              Our <br /> Vision
-            </h1>
-            <p className="text-base sm:text-lg mt-4 font-dm text-neutral-400 md:w-3/4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Molestiae beatae, blanditiis placeat vitae reprehenderit quibusdam
-              labore distinctio at.
-            </p>
-          </div>
-
-          <div className="md:w-1/3">
-            <h1 className="text-white uppercase text-5xl sm:text-6xl md:text-7xl font-unbounded font-bold">
-              OUR <br /> History
-            </h1>
-            <p className="text-base sm:text-lg mt-4 font-dm text-neutral-400 md:w-3/4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Molestiae beatae, blanditiis placeat vitae reprehenderit quibusdam
-              labore distinctio at.
-            </p>
-          </div>
+          {sections.map((item) => (
+            <div key={item.id} className="md:w-1/3">
+              <h1 className="text-white uppercase text-5xl sm:text-6xl md:text-7xl font-unbounded font-bold">
+                {item.title.split("\n")[0]} <br /> {item.title.split("\n")[1]}
+              </h1>
+              <p className="text-base sm:text-lg mt-4 font-dm text-neutral-400 md:w-3/4">
+                {item.content}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* IMPACT SECTION */}
@@ -120,12 +152,20 @@ function page() {
           <div className="w-2 h-2 bg-primary rounded-full"></div> But Why US?
         </div>
 
-        <h1 className="font-unbounded uppercase text-5xl sm:text-6xl md:text-7xl text-white font-bold pb-8 sm:pb-12 text-center md:text-left">
+        <h1 className="font-unbounded uppercase text-4xl sm:text-6xl md:text-7xl text-white font-bold pb-8 sm:pb-12 text-center md:text-left">
           OUR impact <br /> in numbers
         </h1>
 
         <div className="w-full flex flex-wrap justify-center md:justify-start items-start gap-6 sm:gap-8 md:gap-12">
-          <div className="w-full sm:w-[48%] md:w-[31%] h-80 sm:h-96 bg-neutral-200 p-6 text-black"></div>
+          <div className="w-full sm:w-[48%] md:w-[31%] h-80 sm:h-96">
+            <Image
+              src={bulb.src}
+              alt="graphic"
+              width={bulb.width}
+              height={bulb.height}
+              className="w-full h-full object-cover"
+            />
+          </div>
           {inNumbers.map((item, idx) => (
             <div
               key={idx}
@@ -217,13 +257,15 @@ function page() {
               You can be here
             </h1>
             <p className="font-space text-sm sm:text-base text-white capitalize">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-              obcaecati explicabo eligendi enim, error, hic ab corporis
-              temporibus fuga tempora illo doloremque labore itaque ut dolor
-              repudiandae officia at tempore?
+              We’re building a culture where creativity meets impact. At Arinova
+              Studio, you’ll collaborate with curious minds and forward thinkers
+              to bring bold ideas to life. Whether you’re designing interfaces,
+              writing code, or crafting stories — you’ll be part of a team that
+              values innovation, learning, and the art of creating something
+              truly exceptional.
             </p>
             <Link
-              href={"mailto:career@arinova.studio"}
+              href={"mailto:career@arinova.studio?subject=Join%20Arinova%20Studio&body=Hi%20Arinova%20Team,\n"}
               className="uppercase w-64 sm:w-72 hover:w-80 transition-all duration-200 h-10 font-unbounded font-semibold text-lg sm:text-xl text-center my-10 bg-white text-primary group overflow-hidden relative px-4 py-1.5"
             >
               <h1 className="absolute left-1/6 group-hover:-left-full transition-all duration-500">
@@ -250,7 +292,7 @@ function page() {
             </span>
           </h1>
           <Link
-            href={"#"}
+            href={"/#contact-info"}
             className="text-lg sm:text-xl md:text-2xl font-space text-neutral-500 hover:text-white transition-all flex gap-2 justify-center items-center relative after:absolute after:inset-0 after:border-b after:border-white after:w-1/6 after:h-full hover:after:w-full after:transition-all after:duration-500 group"
           >
             Let&apos;s work together{" "}

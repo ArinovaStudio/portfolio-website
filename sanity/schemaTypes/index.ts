@@ -6,7 +6,8 @@ import {authorType} from './authorType'
 import { caseType } from './caseStudy'
 import { ProductType } from './OwnProducts'
 import { portfolioType } from './Portfolio'
+import { designType } from './DesignGallery'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, postType, authorType, caseType, ProductType, portfolioType],
+  types: [blockContentType, postType, authorType, caseType, ProductType, portfolioType, designType],
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useTransition } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Asterisk } from 'lucide-react';
 import ApprochCard from '@/elements/ApprochCard';
@@ -12,6 +12,8 @@ import experience from "@/public/icons/design.jpg"
 import code from "@/public/icons/code.jpg"
 import launch from "@/public/icons/launch.jpg"
 import Products from '@/elements/Products';
+import { fetchData } from '@/sanity/lib/fetch';
+import Link from 'next/link';
 
 
 
@@ -238,12 +240,12 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
                     }}
                   >
                     <p className="text-xs font-bold text-center text-black font-space capitalize scale-[0.35] sm:scale-100">
-                        We Don't only help business <br />
-                        <span className='font-unbounded'>We Build Our own products also</span>
+                        We don’t only help businesses thrive <br />
+                        <span className='font-unbounded'>we craft our own products as well.</span>
                     </p>
 
                     <Products />
-                    <div className='text-xs scale-50 font-space text-right w-[37vw] text-black uppercase font-medium'>View all</div>
+                    <Link href={"/products"} className='text-xs scale-50 font-space text-right w-[37vw] text-black uppercase font-medium'>View all</Link>
                   </motion.div>
                 )}
               </motion.div>

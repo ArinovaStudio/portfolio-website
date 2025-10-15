@@ -1,14 +1,12 @@
 // query.ts
 export const queries = {
   posts: `*[_type == "post"]{
-    _id,
     title,
     slug,
     author->{name, image},
     mainImage,
-    publishedAt,
-    categories[]->{title},
-    body
+    miniDescription,
+    publishedAt
   }`,
 
   portfolio: `*[_type == "portfolio"]{
@@ -16,38 +14,46 @@ export const queries = {
     title,
     slug,
     mainImage,
-    description,
-    technologies,
-    link
+    category,
+    hostedUrl,
+    miniDescription
   }`,
 
-  products: `*[_type == "product"]{
-    _id,
-    name,
-    slug,
-    mainImage,
-    description,
-    features,
-    price,
-    link
-  }`,
-
-  designGallery: `*[_type == "designGallery"]{
-    _id,
-    title,
-    images,
-    description
-  }`,
-
-  caseStudies: `*[_type == "caseStudy"]{
-    _id,
+  products: `*[_type == "products"]{
     title,
     slug,
     mainImage,
-    summary,
-    challenge,
-    solution,
-    result
+    url
+  }`,
+
+designGallery: `
+*[_type == "designGallery"] | order(_createdAt asc) {
+  _id,
+  image{
+    asset->{_id, url, metadata {dimensions}},
+    alt
+  },
+  _id,
+  width,
+  height,
+  mobileWidth,
+  mobileHeight,
+  left,
+  top,
+  mobileLeft,
+  mobileTop
+}`,
+
+  caseStudies: `*[_type == "caseStudies"]{
+  _id,
+  title,
+  slug,
+  mainImage,
+  miniDescription,
+  alt,
+  businessName,
+  percentage,
+  stats
   }`,
 };
 
@@ -55,13 +61,12 @@ export const queries = {
 // query.ts
 export const slug = {
   postBySlug: (slug: string) => `*[_type == "post" && slug.current == "${slug}"][0]{
-    _id,
     title,
     slug,
     author->{name, image},
     mainImage,
+    miniDescription,
     publishedAt,
-    categories[]->{title},
     body
   }`,
 
@@ -75,32 +80,26 @@ export const slug = {
     link
   }`,
 
-  productBySlug: (slug: string) => `*[_type == "product" && slug.current == "${slug}"][0]{
-    _id,
-    name,
-    slug,
-    mainImage,
-    description,
-    features,
-    price,
-    link
-  }`,
-
-  designGalleryBySlug: (slug: string) => `*[_type == "designGallery" && slug.current == "${slug}"][0]{
-    _id,
-    title,
-    images,
-    description
-  }`,
-
-  caseStudyBySlug: (slug: string) => `*[_type == "caseStudy" && slug.current == "${slug}"][0]{
-    _id,
+  productBySlug: (slug: string) => `*[_type == "products" && slug.current == "${slug}"][0]{
     title,
     slug,
     mainImage,
-    summary,
-    challenge,
-    solution,
-    result
+    url,
+    body,
+    miniDescription,
+    publishedAt
+  }`,
+
+  caseStudyBySlug: (slug: string) => `*[_type == "caseStudies" && slug.current == "${slug}"][0]{
+    title,
+  slug,
+  mainImage,
+  miniDescription,
+  alt,
+  businessName,
+  percentage,
+  stats,
+  body,
+  publishedAt
   }`,
 };

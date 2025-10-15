@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutCompany() {
   const [openSection, setOpenSection] = useState("vision");
@@ -57,16 +58,8 @@ export default function AboutCompany() {
             </p>
 
             {/* Animated Button */}
-            <motion.div
-              whileInView={{ opacity: 1, scale: 1 }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.2 }}
-              whileHover={{
-                scale: 1.05,
-                rotate: 0.5,
-                transition: { duration: 0.3 },
-              }}
+            <Link
+              href={"/about-us"}
               className="relative group capitalize px-8 py-2 w-fit text-lg font-light tracking-wide text-neutral-700 hover:bg-primary hover:text-white transition-all duration-500 font-unbounded cursor-pointer text-center"
             >
               <div className="border-t-2 border-primary absolute w-full -top-2 left-0 group-hover:border-transparent transition-all duration-500"></div>
@@ -86,7 +79,7 @@ export default function AboutCompany() {
                 }}
                 transition={{ repeat: Infinity, duration: 2 }}
               />
-            </motion.div>
+            </Link>
           </motion.div>
 
           {/* Right Column - Accordion */}
@@ -162,8 +155,8 @@ export default function AboutCompany() {
           </motion.div>
         </div>
 
-        {/* Brand Logos */}
-        <motion.div
+        {/* Brand Logos - SOON GOING TO ADD */}
+        {/* <motion.div
           className="mt-32 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-25 overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -171,10 +164,7 @@ export default function AboutCompany() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white grayscale rounded-lg"></div>
-          <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white grayscale rounded-lg"></div>
-          <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white grayscale rounded-lg"></div>
-          <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white grayscale rounded-lg"></div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   );

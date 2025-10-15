@@ -1,11 +1,14 @@
 "use client";
 
 import { ArrowUpRight, Calendar } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { useRouter } from "next/navigation";
 
 export default function Cards({ blog }: { blog: any }) {
+  const router = useRouter()
   return (
     <motion.div
       key={blog.id}
@@ -18,17 +21,28 @@ export default function Cards({ blog }: { blog: any }) {
     >
       {/* Image */}
       <div className="w-full h-80 overflow-hidden">
-        <motion.img
-          src={blog.image}
+        <Image
+          src={urlFor(blog.mainImage).url()}
           alt={blog.title}
-          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-          whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.6 }}
+          width={1080}
+          height={1080}
+          className="w-full h-full object-cover"
         />
       </div>
 
       {/* Text Section */}
       <div className="pt-4 pb-2">
+        <div className="flex gap-2.5 items-center">
+
+        <div className="w-6 h-6 my-1 overflow-hidden">
+          <Image 
+          src={urlFor(blog.author.image).url()}
+          alt={blog.author.name}
+          width={100}
+          height={100}
+          className="w-full h-full object-cover rounded-full"
+          />
+        </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,8 +50,9 @@ export default function Cards({ blog }: { blog: any }) {
           viewport={{ once: false }}
           className="text-[#9b5cff] font-dm text-lg mb-1"
         >
-          {blog.author}
+          {blog.author.name}
         </motion.p>
+          </div>
 
         <motion.h3
           initial={{ opacity: 0, y: 25 }}
@@ -56,7 +71,7 @@ export default function Cards({ blog }: { blog: any }) {
           viewport={{ once: false }}
           className="text-neutral-500 font-space font-light text-sm sm:text-base"
         >
-          {blog.description}
+          {blog.miniDescription}
         </motion.p>
       </div>
 
@@ -70,11 +85,12 @@ export default function Cards({ blog }: { blog: any }) {
       >
         <div className="flex items-center gap-2">
           <Calendar size={20} className="text-gray-400" />
-          <span className="text-base">{blog.date}</span>
+          <span className="text-base">{blog.publishedAt.split("T")[0]}</span>
         </div>
 
-        <Link
-          href="#"
+        <div
+        onClick={() => router.push(`/blogs/${blog.slug.current}`)}
+          // href={blog.slug.current}
           className="flex items-center gap-1 text-lg text-white border-b border-white/60 hover:text-[#9b5cff] transition-colors group-hover:border-[#9b5cff]"
         >
           Read More{" "}
@@ -85,7 +101,7 @@ export default function Cards({ blog }: { blog: any }) {
           >
             <ArrowUpRight size={20} />
           </motion.span>
-        </Link>
+        </div>
       </motion.div>
     </motion.div>
   );

@@ -18,6 +18,10 @@ export const ProductType = defineType({
         source: 'title',
       },
     }),
+        defineField({
+      name: 'url',
+      type: 'string',
+    }),
     defineField({
       name: 'mainImage',
       type: 'image',
@@ -32,6 +36,7 @@ export const ProductType = defineType({
         })
       ]
     }),
+
     defineField({
       name: 'publishedAt',
       type: 'datetime',

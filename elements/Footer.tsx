@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import {FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn} from "react-icons/fa6";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import logo from "@/public/assets/arinova.jpg"
 
 export default function Footer() {
   const links = [
@@ -61,8 +63,15 @@ export default function Footer() {
             ease: "easeInOut",
           }}
           aria-hidden
-        />
-
+        >
+          <Image 
+          src={logo.src}
+          alt="logo"
+          width={logo.width}
+          height={logo.height}
+          className="w-full h-full object-cover rounded-full"
+          />
+        </motion.div>
         <div>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-[0.05em] text-white font-unbounded leading-tight">
             ARINOVA
@@ -198,19 +207,19 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-neutral-400 px-2 md:px-10">
           <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-8">
             <Link
-              href="#"
+              href="/cookie-policy"
               className="hover:text-white transition font-unbounded text-lg font-light"
             >
               Cookie Policy
             </Link>
             <Link
-              href="#"
+              href="/legal-terms"
               className="hover:text-white transition font-unbounded text-lg font-light"
             >
               Legal Terms
             </Link>
             <Link
-              href="#"
+              href="/privacy-policy"
               className="hover:text-white transition font-unbounded text-lg font-light"
             >
               Privacy & Policy
