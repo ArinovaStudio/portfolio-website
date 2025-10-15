@@ -15,10 +15,10 @@ function ResponsiveGrid() {
         <div className="col-span-1 row-span-2 bg-white shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
           {" "}
           <Image
-            src={"https://picsum.photos/1080/1080"}
+            src={"/assets/showcase_1.jpg"}
             alt="image"
-            width={100}
-            height={100}
+            width={1080}
+            height={1080}
             className="w-full h-full object-cover"
           />{" "}
         </div>{" "}
@@ -31,20 +31,20 @@ function ResponsiveGrid() {
         <div className="col-span-1 row-span-3 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-80">
           {" "}
           <Image
-            src={"https://picsum.photos/1080/1080"}
+            src={"assets/showcase_2.jpg"}
             alt="image"
-            width={100}
-            height={100}
+            width={1080}
+            height={1080}
             className="w-full h-full object-cover"
           />{" "}
         </div>{" "}
         <div className="col-span-2 row-span-2 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
           {" "}
           <Image
-            src={"https://picsum.photos/1080/1080"}
+            src={"assets/showcase_3.jpg"}
             alt="image"
-            width={100}
-            height={100}
+            width={1080}
+            height={1080}
             className="w-full h-full object-cover"
           />{" "}
         </div>{" "}
