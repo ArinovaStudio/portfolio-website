@@ -1,9 +1,10 @@
-import { LucideGlobe, LucideInstagram, LucideLinkedin } from "lucide-react";
+import { LucideGlobe } from "lucide-react";
 import a from "@/public/assets/adarsh.jpeg";
 import r from "@/public/assets/rajneesh.png";
 import s from "@/public/assets/sayam.jpg";
 import aq from "@/public/assets/aquib.jpg";
 import ash from "@/public/assets/ashutosh.jpg";
+import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
 export const founders = [
   {
@@ -19,12 +20,12 @@ export const founders = [
       {
         title: "instagram",
         url: "https://instagram.com/innovative.adarsh",
-        icon: LucideInstagram,
+        icon: FaInstagram,
       },
       {
         title: "Linkedin",
         url: "https://linkedin.com/in/devadarsh",
-        icon: LucideLinkedin,
+        icon: FaLinkedinIn,
       },
     ],
   },
@@ -36,12 +37,17 @@ export const founders = [
       {
         title: "instagram",
         url: "https://instagram.com/rajneeshmeenaverma",
-        icon: LucideInstagram,
+        icon: FaInstagram,
       },
             {
         title: "linkedin",
         url: "https://linkedin.com/in/rajneesh-verma-4a871825b",
-        icon: LucideLinkedin,
+        icon: FaLinkedinIn,
+      },
+                  {
+        title: "twitter",
+        url: "https://x.com/",
+        icon: FaXTwitter,
       },
     ],
   },
@@ -53,12 +59,12 @@ export const founders = [
       {
         title: "instagram",
         url: "https://www.instagram.com/sayam.khajuria",
-        icon: LucideInstagram,
+        icon: FaInstagram,
       },
       {
         title: "Linkedin",
         url: "https://www.linkedin.com/in/sayam-khajuria",
-        icon: LucideLinkedin,
+        icon: FaLinkedinIn,
       },
     ],
   },
@@ -70,7 +76,7 @@ export const founders = [
       {
         title: "linkedin",
         url: "https://linkedin.com/in/ashutosh-pandey-87543b269",
-        icon: LucideLinkedin,
+        icon: FaLinkedinIn,
       },
     ],
   },
@@ -82,7 +88,7 @@ export const founders = [
       {
         title: "instagram",
         url: "https://instagram.com",
-        icon: LucideInstagram,
+        icon: FaInstagram,
       },
     ],
   },

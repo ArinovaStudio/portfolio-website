@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import MiniLoader from '@/elements/SmallLoader';
 import Loader from '@/elements/Loader';
@@ -40,7 +40,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Navbar />
       <Hero />
       <Portfolio />
@@ -53,6 +53,6 @@ export default function Home() {
       <TestimonialsCarousel />
       <Contact />
       <Footer />
-    </>
+    </Suspense>
   );
 }
