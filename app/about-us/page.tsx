@@ -9,7 +9,7 @@ import bulb from "@/public/assets/bulb.jpg";
 
 function ResponsiveGrid() {
   return (
-    <div className="flex h-[70vh] px-14 mb-14 w-full items-center justify-center max-md:h-auto max-md:px-4 max-md:py-8">
+    <div className="flex h-[70vh] px-2 mb-14 w-full items-center justify-center max-md:h-auto max-md:px-4 max-md:py-8">
       <div className="grid h-full w-full gap-6 p-2 grid-cols-4 grid-rows-4 shadow-md max-md:grid-cols-1 max-md:grid-rows-none max-md:h-auto">
         {" "}
         <div className="col-span-1 row-span-2 bg-white shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
@@ -31,7 +31,7 @@ function ResponsiveGrid() {
         <div className="col-span-1 row-span-3 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-80">
           {" "}
           <Image
-            src={"assets/showcase_2.jpg"}
+            src={"/assets/showcase_3.jpg"}
             alt="image"
             width={1080}
             height={1080}
@@ -41,7 +41,7 @@ function ResponsiveGrid() {
         <div className="col-span-2 row-span-2 bg-white text-black shadow-md flex items-center justify-center max-md:col-span-1 max-md:row-span-1 max-md:h-64">
           {" "}
           <Image
-            src={"assets/showcase_3.jpg"}
+            src={"/assets/showcase_2.jpg"}
             alt="image"
             width={1080}
             height={1080}
@@ -233,7 +233,7 @@ function page() {
                     <Link
                       href={link.url}
                       key={link.title}
-                      className="w-12 sm:w-14 h-12 sm:h-14 border-2 border-white rounded-full grid place-items-center"
+                      className="w-12 sm:w-14 h-12 sm:h-14 border-2 border-white hover:bg-white hover:text-black transition-all rounded-full grid place-items-center"
                     >
                       <link.icon size={28} strokeWidth={2} />
                     </Link>

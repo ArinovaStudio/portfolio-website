@@ -38,7 +38,7 @@ function page() {
         <div className="w-screen min-h-screen h-auto">
             <Title 
             title='Bloggs'
-            slogan='read the best blogs written by tech experts'
+            slogan="Insights, trends, and ideas shaping the future."
             />
 
         <div className="flex flex-wrap mx-auto my-10 justify-center items-center sm:items-start sm:px-14 px-4 pr-0 pl-8 gap-4 sm:gap-28">

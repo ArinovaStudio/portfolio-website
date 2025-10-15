@@ -50,7 +50,7 @@ function page() {
       <div className="w-screen min-h-screen h-auto pb-24">
         <Title
           title="Case Studdies"
-          slogan="We have helped many businesses next can be yours"
+          slogan="Explore how our innovative solutions drive real impact."
         />
 
         {caseStudies.map((study, i) => (

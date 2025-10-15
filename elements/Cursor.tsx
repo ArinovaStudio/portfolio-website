@@ -2,20 +2,7 @@
 
 // import { motion, useMotionValue, useSpring } from "framer-motion";
 // import { useEffect, useState } from "react";
-
-// // Mock cursor context for demo
-// const useCursor = () => {
-//   const [type, setType] = useState<"default" | "hover" | "label">("default");
-//   const [text, setText] = useState("");
-//   return {
-//     type,
-//     text,
-//     setCursor: (newType: "default" | "hover" | "label", newText?: string) => {
-//       setType(newType);
-//       if (newText) setText(newText);
-//     }
-//   };
-// };
+// import { useCursor } from "./CursorContext";
 
 // export default function CustomCursor() {
 //   const { type, text, setCursor } = useCursor();
@@ -28,19 +15,6 @@
 //   // Smooth motion using springs
 //   const x = useSpring(mouseX, { damping: 50, stiffness: 200 });
 //   const y = useSpring(mouseY, { damping: 50, stiffness: 200 });
-
-//   // Hide default cursor globally
-//   useEffect(() => {
-//     document.body.style.cursor = "none";
-//     const style = document.createElement("style");
-//     style.innerHTML = `* { cursor: none !important; }`;
-//     document.head.appendChild(style);
-
-//     return () => {
-//       document.body.style.cursor = "auto";
-//       document.head.removeChild(style);
-//     };
-//   }, []);
 
 //   useEffect(() => {
 //     const move = (e: MouseEvent) => {
@@ -61,12 +35,12 @@
 //     };
 //   }, [mouseX, mouseY]);
 
-//   // Auto hover detection
+//   // Auto hover detection (reliable, no jitter)
 //   useEffect(() => {
 //     let currentHovered: HTMLElement | null = null;
 
 //     const handleMove = (e: MouseEvent) => {
-//       if (type === "label") return;
+//       if (type === "label") return; // label mode always overrides
 
 //       const el = e.target as HTMLElement;
 
@@ -91,6 +65,7 @@
 //     return () => document.removeEventListener("mousemove", handleMove);
 //   }, [type, setCursor]);
 
+//   // Variants for scaling/morphing
 //   const variants = {
 //     default: { scale: 1 },
 //     hover: { scale: 1 },
@@ -98,58 +73,55 @@
 //   };
 
 //   return (
-//     <>
-//       <motion.div
-//         style={{
-//           x,
-//           y,
-//           position: "fixed",
-//           top: 0,
-//           left: 0,
-//           pointerEvents: "none",
-//           zIndex: 9999,
-//           translateX: "-50%",
-//           translateY: "-50%",
-//           display: isVisible ? "flex" : "none",
-//           justifyContent: "center",
-//           alignItems: "center",
-//           fontSize: "14px",
-//           fontWeight: 500,
-//           whiteSpace: "nowrap",
-//           mixBlendMode: type === "label" ? "normal" : "difference",
-//         }}
-//         variants={variants}
-//         animate={type}
-//         transition={{ type: "spring", stiffness: 300, damping: 45 }}
-//         layout
-//       >
-//         {type === "label" ? (
-//           <motion.div
-//             layout
-//             className="bg-white/20 backdrop-blur-md border-2 border-white rounded-full text-xl font-medium px-4 py-2"
-//             transition={{ type: "spring", stiffness: 300, damping: 45 }}
-//           >
-//             {text}
-//           </motion.div>
-//         ) : (
-//           <motion.div
-//             layoutId="innerBall"
-//             className="rounded-full bg-white relative"
-//             style={{
-//               width: type === "hover" ? 60 : 30,
-//               height: type === "hover" ? 60 : 30,
-//               borderWidth: type === "hover" ? 0 : 1,
-//               borderStyle: "solid",
-//               borderColor: "#fff",
-//             }}
-//             transition={{ type: "spring", stiffness: 300, damping: 45 }}
-//           />
-//         )}
-//       </motion.div>
-//     </>
+//     <motion.div
+//       style={{
+//         x,
+//         y,
+//         position: "fixed",
+//         top: 0,
+//         left: 0,
+//         pointerEvents: "none",
+//         zIndex: 9999,
+//         translateX: "-50%",
+//         translateY: "-50%",
+//         display: isVisible ? "flex" : "none",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         fontSize: "14px",
+//         fontWeight: 500,
+//         whiteSpace: "nowrap",
+//         mixBlendMode: type === "label" ? "normal" : "difference",
+//       }}
+//       variants={variants}
+//       animate={type}
+//       transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//       layout
+//     >
+//       {type === "label" ? (
+//         <motion.div
+//           layout
+//           className="bg-white/20 backdrop-blur-lg border-2 border-white rounded-full text-2xl font-unbounded font-medium px-6 py-1 pt-1.5"
+//           transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//         >
+//           {text}
+//         </motion.div>
+//       ) : (
+//         <motion.div
+//           layoutId="innerBall"
+//           className={`rounded-full bg-white relative`}
+//           style={{
+//             width: type === "hover" ? 60 : 30,
+//             height: type === "hover" ? 60 : 30,
+//             borderWidth: type === "hover" ? 0 : 1,
+//             borderStyle: "solid",
+//             borderColor: "#fff",
+//           }}
+//           transition={{ type: "spring", stiffness: 300, damping: 45 }}
+//         />
+//       )}
+//     </motion.div>
 //   );
 // }
-
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
@@ -159,6 +131,7 @@ import { useCursor } from "./CursorContext";
 export default function CustomCursor() {
   const { type, text, setCursor } = useCursor();
   const [isVisible, setIsVisible] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   // Mouse position
   const mouseX = useMotionValue(0);
@@ -168,6 +141,21 @@ export default function CustomCursor() {
   const x = useSpring(mouseX, { damping: 50, stiffness: 200 });
   const y = useSpring(mouseY, { damping: 50, stiffness: 200 });
 
+  // Detect desktop (width >= 1024px)
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
+  // 🧠 Disable cursor entirely on mobile/tablet
+  if (!isDesktop) return null;
+
+  // Mouse movement
   useEffect(() => {
     const move = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -187,15 +175,14 @@ export default function CustomCursor() {
     };
   }, [mouseX, mouseY]);
 
-  // Auto hover detection (reliable, no jitter)
+  // Auto hover detection
   useEffect(() => {
     let currentHovered: HTMLElement | null = null;
 
     const handleMove = (e: MouseEvent) => {
-      if (type === "label") return; // label mode always overrides
+      if (type === "label") return;
 
       const el = e.target as HTMLElement;
-
       const interactive = el.closest(
         "a, button, input, textarea, select, [role='button'], .cursor-hover"
       ) as HTMLElement | null;
@@ -205,11 +192,9 @@ export default function CustomCursor() {
           currentHovered = interactive;
           setCursor("hover");
         }
-      } else {
-        if (currentHovered) {
-          currentHovered = null;
-          setCursor("default");
-        }
+      } else if (currentHovered) {
+        currentHovered = null;
+        setCursor("default");
       }
     };
 
@@ -217,7 +202,6 @@ export default function CustomCursor() {
     return () => document.removeEventListener("mousemove", handleMove);
   }, [type, setCursor]);
 
-  // Variants for scaling/morphing
   const variants = {
     default: { scale: 1 },
     hover: { scale: 1 },
@@ -260,7 +244,7 @@ export default function CustomCursor() {
       ) : (
         <motion.div
           layoutId="innerBall"
-          className={`rounded-full bg-white relative`}
+          className="rounded-full bg-white relative"
           style={{
             width: type === "hover" ? 60 : 30,
             height: type === "hover" ? 60 : 30,

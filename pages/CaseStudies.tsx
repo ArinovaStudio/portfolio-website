@@ -104,7 +104,7 @@ export default function CaseStudiesScroll() {
         <p className="text-gray-400 text-sm md:text-base mb-4 font-unbounded font-light">
           ✳ Our Track Record
         </p>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-2 uppercase font-stretch">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-2 uppercase font-stretch">
           Case Studdies
         </h1>
         <p className="text-gray-400 text-xl md:text-2xl font-cursive italic">

@@ -59,7 +59,7 @@ function page() {
     <>
       <Navbar />
       <div className="w-screen min-h-screen h-auto">
-        <Title title="Portfolio" slogan="our portfolio" />
+        <Title title="Porrtfolio" slogan="Crafting seamless digital experiences with precision." />
         <motion.div
           className="flex flex-wrap w-full px-4 sm:px-8 md:px-12 lg:px-16 gap-4 sm:gap-8 md:gap-12 lg:gap-16 justify-start items-center my-10"
           variants={containerVariants}

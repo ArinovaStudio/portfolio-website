@@ -71,17 +71,17 @@ export default function Portfolio() {
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <h1 className="font-unbounded text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 sm:mb-0">
+          <h1 className="font-unbounded text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 sm:mb-0">
             LATEST <br /> PORTFOLIO
           </h1>
-          <p className="sm:w-1/2 lg:w-1/3 font-medium text-lg sm:text-xl md:text-2xl text-right font-space">
+          <p className="sm:w-1/2 lg:w-1/3 font-medium text-sm sm:text-xl md:text-2xl text-right font-space">
             Our creative spirit comes alive in the digital realm — with nimble fingers
             crafting stories that blend art and technology.
           </p>
         </motion.div>
 
         {/* Carousel */}
-        <div className="w-full flex-grow relative -mt-16 overflow-hidden">
+        <div className="w-full flex-grow relative mt-4 sm:-mt-16 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               // onClick={() => router.push(`/portfolio/${currentProduct.slug.current}`)}

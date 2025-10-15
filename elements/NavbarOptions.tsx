@@ -99,7 +99,7 @@ function NavbarOptions({ close }: { close: (val: boolean) => void }) {
               className="block"
             >
               <h1
-                className={`font-unbounded uppercase font-extrabold relative transition-colors duration-700 py-1 text-7xl
+                className={`font-unbounded uppercase font-extrabold relative transition-colors duration-700 py-1 text-4xl text-right sm:text-7xl
                 ${active === tab.link ? "text-white" : "text-neutral-700"}
                 after:absolute after:inset-0 after:w-0 hover:after:w-full after:h-full after:bg-white
                 after:transition-all after:duration-500 after:-z-10 after:translate-x-full hover:after:translate-x-0 hover:text-black

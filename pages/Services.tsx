@@ -178,7 +178,7 @@ function Services() {
                 }}
                 className={`uppercase font-semibold font-unbounded -mt-14 ${
                   currentView === index ? "text-white" : "text-neutral-500"
-                } text-5xl md:text-7xl text-center px-4`}
+                } text-4xl md:text-7xl text-center px-4`}
               >
                 {item}
               </motion.h1>
