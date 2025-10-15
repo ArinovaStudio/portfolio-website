@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import MiniLoader from '@/elements/SmallLoader';
-import Loader from '@/elements/Loader';
+import { Preloader } from '@/elements/Loader';
 import Hero from '@/pages/Hero';
 
 // Loaders
@@ -12,7 +12,7 @@ import Hero from '@/pages/Hero';
 
 // Dynamically import all components with MiniLoader fallback
 const Navbar = dynamic(() => import('@/elements/Navbar'), { loading: () => <MiniLoader /> });
-// const Hero = dynamic(() => import('@/pages/Hero'), { loading: () => <MiniLoader /> });
+
 const Approch = dynamic(() => import('@/pages/Approch'), { loading: () => <MiniLoader /> });
 const Portfolio = dynamic(() => import('@/pages/Portfolio'), { loading: () => <MiniLoader /> });
 const AboutCompany = dynamic(() => import('@/pages/About'), { loading: () => <MiniLoader /> });
@@ -36,13 +36,14 @@ export default function Home() {
   }, []);
 
   if (!showContent) {
-    return <Loader />;
+    return <Preloader onFinish={() => setShowContent(true)} />;
   }
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Navbar />
+    <>
       <Hero />
+    <Suspense fallback={null}>
+    <Navbar />
       <Portfolio />
       <AboutCompany />
       <Services />
@@ -54,5 +55,6 @@ export default function Home() {
       <Contact />
       <Footer />
     </Suspense>
+    </>
   );
 }

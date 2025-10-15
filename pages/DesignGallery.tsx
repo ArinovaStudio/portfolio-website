@@ -27,7 +27,6 @@ function DesignGallery() {
   const getData = async () => {
     const data = await fetchData("designGallery");
     if (data) {
-      console.log(data);
       setImages(data);
     }
   };
@@ -35,128 +34,6 @@ function DesignGallery() {
   useEffect(() => {
     getData();
   }, []);
-  // const images: ImageItem[] = [
-  //     {
-  //         id: 1,
-  //         src: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&h=600&fit=crop",
-  //         width: "280px",
-  //         height: "380px",
-  //         mobileWidth: "140px",
-  //         mobileHeight: "190px",
-  //         left: "5%",
-  //         top: "10%",
-  //         mobileLeft: "5%",
-  //         mobileTop: "15%"
-  //     },
-  //     {
-  //         id: 2,
-  //         src: "https://images.unsplash.com/photo-1618004912476-29818d81ae2e?w=800&h=600&fit=crop",
-  //         width: "520px",
-  //         height: "350px",
-  //         mobileWidth: "260px",
-  //         mobileHeight: "175px",
-  //         left: "35%",
-  //         top: "5%",
-  //         mobileLeft: "25%",
-  //         mobileTop: "10%"
-  //     },
-  //     {
-  //         id: 3,
-  //         src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop",
-  //         width: "300px",
-  //         height: "420px",
-  //         mobileWidth: "150px",
-  //         mobileHeight: "210px",
-  //         left: "70%",
-  //         top: "15%",
-  //         mobileLeft: "65%",
-  //         mobileTop: "20%"
-  //     },
-  //     {
-  //         id: 4,
-  //         src: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop",
-  //         width: "450px",
-  //         height: "300px",
-  //         mobileWidth: "225px",
-  //         mobileHeight: "150px",
-  //         left: "10%",
-  //         top: "55%",
-  //         mobileLeft: "8%",
-  //         mobileTop: "45%"
-  //     },
-  //     {
-  //         id: 5,
-  //         src: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop",
-  //         width: "300px",
-  //         height: "420px",
-  //         mobileWidth: "150px",
-  //         mobileHeight: "210px",
-  //         left: "65%",
-  //         top: "50%",
-  //         mobileLeft: "60%",
-  //         mobileTop: "50%"
-  //     },
-  //     {
-  //         id: 6,
-  //         src: "https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&h=600&fit=crop",
-  //         width: "380px",
-  //         height: "280px",
-  //         mobileWidth: "190px",
-  //         mobileHeight: "140px",
-  //         left: "20%",
-  //         top: "25%",
-  //         mobileLeft: "15%",
-  //         mobileTop: "30%"
-  //     },
-  //     {
-  //         id: 7,
-  //         src: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&h=600&fit=crop",
-  //         width: "320px",
-  //         height: "400px",
-  //         mobileWidth: "160px",
-  //         mobileHeight: "200px",
-  //         left: "55%",
-  //         top: "30%",
-  //         mobileLeft: "50%",
-  //         mobileTop: "35%"
-  //     },
-  //     {
-  //         id: 8,
-  //         src: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop",
-  //         width: "420px",
-  //         height: "320px",
-  //         mobileWidth: "210px",
-  //         mobileHeight: "160px",
-  //         left: "8%",
-  //         top: "70%",
-  //         mobileLeft: "10%",
-  //         mobileTop: "60%"
-  //     },
-  //     {
-  //         id: 9,
-  //         src: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=800&h=600&fit=crop",
-  //         width: "350px",
-  //         height: "380px",
-  //         mobileWidth: "175px",
-  //         mobileHeight: "190px",
-  //         left: "72%",
-  //         top: "75%",
-  //         mobileLeft: "68%",
-  //         mobileTop: "70%"
-  //     },
-  //     {
-  //         id: 10,
-  //         src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
-  //         width: "480px",
-  //         height: "340px",
-  //         mobileWidth: "240px",
-  //         mobileHeight: "170px",
-  //         left: "30%",
-  //         top: "45%",
-  //         mobileLeft: "25%",
-  //         mobileTop: "55%"
-  //     }
-  // ];
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
