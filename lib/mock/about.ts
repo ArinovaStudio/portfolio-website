@@ -35,8 +35,13 @@ export const founders = [
     links: [
       {
         title: "instagram",
-        url: "https://instagram.com",
+        url: "https://instagram.com/rajneeshmeenaverma",
         icon: LucideInstagram,
+      },
+            {
+        title: "linkedin",
+        url: "https://linkedin.com/in/rajneesh-verma-4a871825b",
+        icon: LucideLinkedin,
       },
     ],
   },
@@ -63,9 +68,9 @@ export const founders = [
     position: "Chief Technical Officer (CTO)",
     links: [
       {
-        title: "instagram",
-        url: "https://instagram.com",
-        icon: LucideInstagram,
+        title: "linkedin",
+        url: "https://linkedin.com/in/ashutosh-pandey-87543b269",
+        icon: LucideLinkedin,
       },
     ],
   },
