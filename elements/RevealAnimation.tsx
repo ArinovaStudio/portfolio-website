@@ -1,87 +1,124 @@
 "use client";
 
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
-
-const revealVariant = (direction: string) => ({
-  hidden: {
-    y: direction === "up" ? 300 : -300,
-    rotateX: direction === "up" ? 145 : -145,
-    opacity: 0,
-    filter: "blur(10px)",
-    scale: 0.9,
-  },
-  visible: (i: any) => ({
-    y: 0,
-    rotateX: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    scale: 1,
-    transition: {
-      delay: i * 0.08,
-      duration: 1.2,
-      ease: [0.25, 1, 0.5, 1],
-    },
-  }),
-});
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export default function AnimatedTitle() {
   const title1 = "ARINOVA";
   const title2 = "STUDIO";
-  const studioControls = useAnimation(); // animation controller for STUDIO
+
+  const arinovaRef = useRef<HTMLHeadingElement>(null);
+  const studioRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    // Start the STUDIO reveal animation
-    studioControls.start("visible");
+    // Force GPU acceleration & prevent layout shifts
+    gsap.set([arinovaRef.current, studioRef.current], {
+      willChange: "transform, opacity, filter",
+      transformPerspective: 1000,
+      backfaceVisibility: "hidden",
+    });
 
-    // After 3 seconds, fade out the STUDIO text
-    const timer = setTimeout(() => {
-      studioControls.start({
-        opacity: 0,
-        transition: { duration: 1.5, ease: "easeInOut" },
+    // Use a timeline for consistent sequencing
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power4.inOut",
+          duration: 0.7,
+          delay: 0.6
+        },
       });
-    }, 3000);
 
-    return () => clearTimeout(timer);
-  }, [studioControls]);
+      // Smooth upward reveal (ARINOVA)
+      tl.fromTo(
+        arinovaRef.current?.children || [],
+        {
+          y: 180,
+          rotateX: 120,
+          opacity: 0,
+          filter: "blur(8px)",
+          scale: 0.92,
+        },
+        {
+          y: 0,
+          rotateX: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          stagger: 0.06,
+        }
+      );
+
+      // Downward reveal (STUDIO)
+      tl.fromTo(
+        studioRef.current?.children || [],
+        {
+          y: -180,
+          rotateX: -120,
+          opacity: 0,
+          filter: "blur(8px)",
+          scale: 0.92,
+        },
+        {
+          y: 0,
+          rotateX: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          stagger: 0.06,
+        },
+        "-=0.5"
+      );
+
+      // Fade out STUDIO smoothly
+      tl.to(
+        studioRef.current,
+        {
+          opacity: 0,
+          duration: 0.6,
+          ease: "power4.out",
+        },
+        "+=2"
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center overflow-hidden perspective-[1000px] px-4">
-      {/* ARINOVA (Upward Reveal) */}
-      <motion.h1
+      <h1
+        ref={arinovaRef}
         className="font-unbounded font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[12rem] uppercase leading-[0.8] py-2 text-neutral-100 flex justify-center flex-wrap"
-        initial="hidden"
-        animate="visible"
       >
         {title1.split("").map((char, i) => (
-          <motion.span
+          <span
             key={i}
-            custom={i}
-            variants={revealVariant("up") as any}
-            style={{ display: "inline-block" }}
+            style={{
+              display: "inline-block",
+              willChange: "transform, opacity, filter",
+            }}
           >
             {char}
-          </motion.span>
+          </span>
         ))}
-      </motion.h1>
+      </h1>
 
-      {/* STUDIO (Downward Reveal + Fade Out after 3s) */}
-      <motion.h1
+      <h1
+        ref={studioRef}
         className="font-space font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] uppercase text-neutral-100 flex justify-center flex-wrap"
-        initial="hidden"
-        animate={studioControls}
       >
         {title2.split("").map((char, i) => (
-          <motion.span
+          <span
             key={i}
-            custom={i}
-            variants={revealVariant("down") as any}
-            style={{ display: "inline-block" }}
+            style={{
+              display: "inline-block",
+              willChange: "transform, opacity, filter",
+            }}
           >
             {char}
-          </motion.span>
+          </span>
         ))}
-      </motion.h1>
+      </h1>
     </div>
   );
 }

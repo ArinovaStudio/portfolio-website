@@ -107,7 +107,7 @@ export default function CaseStudiesScroll() {
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-2 uppercase font-stretch">
           Case Studdies
         </h1>
-        <p className="text-gray-400 text-xl md:text-2xl font-cursive italic">
+        <p className="text-gray-400 text-xl md:text-2xl font-cursive italic mb-10 sm:mb-0">
           How We <span className="text-purple-500">Helped</span> Businesses To{" "}
           <span className="text-purple-500">Increase Metrics</span>.
         </p>
@@ -204,7 +204,7 @@ export default function CaseStudiesScroll() {
                 const isActive = i === active;
                 return (
                   <motion.div
-                  onMouseEnter={() => setCursor("label", "Xyz business")}
+                  onMouseEnter={() => setCursor("label", study.businessName)}
                   onMouseLeave={() => setCursor("default")}
                     key={`svg-${study._id}`}
                     initial={false}
