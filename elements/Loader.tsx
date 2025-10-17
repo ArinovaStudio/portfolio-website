@@ -3,38 +3,53 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function Loader() {
+interface LoaderProps {
+  onComplete?: () => void;
+}
+
+export default function Loader({ onComplete }: LoaderProps) {
   const loaderRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const played = useRef(false); // ensures animation runs only once
 
   useEffect(() => {
-    if (!loaderRef.current) return;
+    if (!loaderRef.current || played.current) return;
 
-    // Step 0: Show text instantly
-    gsap.set(textRef.current, { opacity: 1, scale: 1 });
-    gsap.set(lineRef.current, { scaleX: 1, transformOrigin: "left center" });
+    played.current = true;
 
-    // Wait 2 seconds, then start the animation
     const tl = gsap.timeline({
       defaults: { ease: "power3.inOut" },
-      delay: 2
+      onComplete: () => {
+        if (onComplete) onComplete();
+      },
     });
 
-    // Step 1: Fade out + scale text before split
+    // Step 0: show text & line instantly
+    gsap.set(textRef.current, { opacity: 1, scale: 1 });
+    gsap.set(lineRef.current, { scaleX: 0, transformOrigin: "left center" });
+
+    // Step 1: animate line subtly for 2s while text is static
+    tl.to(lineRef.current, {
+      scaleX: 1,
+      duration: 2,
+      ease: "power1.inOut",
+    });
+
+    // Step 2: fade out text and line before split
     tl.to(
       textRef.current,
-      { opacity: 0, scale: 0, duration: 0.3, ease: "power2.inOut" }
+      { opacity: 0, scale: 0, duration: 0.3, ease: "power2.inOut" },
+      "<"
     );
+    tl.to(lineRef.current, { opacity: 0, duration: 0.3 }, "<");
 
-    tl.to(lineRef.current, { opacity: 0, duration: 0.2 }, "<");
-
-    // Step 2: Split loader (top moves up, bottom moves down)
+    // Step 3: split loader (top moves up, bottom moves down)
     tl.to(topRef.current, { y: "-100%", duration: 1, ease: "power4.inOut" }, "<");
     tl.to(bottomRef.current, { y: "100%", duration: 1, ease: "power4.inOut" }, "<");
-  }, []);
+  }, [onComplete]);
 
   return (
     <div
@@ -51,7 +66,7 @@ export default function Loader() {
       <div className="z-10 flex flex-col items-center gap-4">
         <h1
           ref={textRef}
-          className="text-3xl md:text-5xl text-white font-space tracking-wide text-center"
+          className="text-3xl md:text-5xl text-white font-space tracking-wide"
         >
           Turning Visualization Into Reality.
         </h1>
