@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 interface LoaderProps {
-  onComplete?: () => void;
+  onComplete?: boolean;
 }
 
 export default function Loader({ onComplete }: LoaderProps) {
@@ -13,15 +13,16 @@ export default function Loader({ onComplete }: LoaderProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const played = useRef(false); // ✅ ensure animation runs only once
 
   useEffect(() => {
-    if (!loaderRef.current) return;
+    if (!loaderRef.current || played.current) return;
+
+    played.current = true; // mark animation as played
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.inOut" },
-      onComplete: () => {
-        if (onComplete) onComplete();
-      },
+      // no automatic onComplete call
     });
 
     // Step 0: Show text instantly (no in animation)
@@ -41,13 +42,9 @@ export default function Loader({ onComplete }: LoaderProps) {
     tl.to(lineRef.current, { opacity: 0, duration: 0.2 }, "<");
 
     // Step 3: Split loader (top moves up, bottom moves down)
-    tl.to(
-      topRef.current,
-      { y: "-100%", duration: 1, ease: "power4.inOut" },
-      "<"
-    );
+    tl.to(topRef.current, { y: "-100%", duration: 1, ease: "power4.inOut" }, "<");
     tl.to(bottomRef.current, { y: "100%", duration: 1, ease: "power4.inOut" }, "<");
-  }, [onComplete]);
+  }, []);
 
   return (
     <div
@@ -55,24 +52,18 @@ export default function Loader({ onComplete }: LoaderProps) {
       className="fixed inset-0 z-[9999] overflow-hidden bg-transparent flex flex-col items-center justify-center"
     >
       {/* Top Half */}
-      <div
-        ref={topRef}
-        className="absolute top-0 left-0 w-full h-1/2 bg-neutral-900"
-      />
+      <div ref={topRef} className="absolute top-0 left-0 w-full h-1/2 bg-neutral-900" />
 
       {/* Bottom Half */}
-      <div
-        ref={bottomRef}
-        className="absolute bottom-0 left-0 w-full h-1/2 bg-neutral-900"
-      />
+      <div ref={bottomRef} className="absolute bottom-0 left-0 w-full h-1/2 bg-neutral-900" />
 
       {/* Center Text */}
       <div className="z-10 flex flex-col items-center gap-4">
         <h1
           ref={textRef}
-          className="text-3xl md:text-5xl text-white font-space tracking-wide"
+          className="text-3xl md:text-5xl text-white font-space tracking-wide text-center"
         >
-          Turning Visulization Into Reality.
+          Turning Visualization Into Reality.
         </h1>
 
         {/* Animated Line */}
@@ -80,7 +71,6 @@ export default function Loader({ onComplete }: LoaderProps) {
           ref={lineRef}
           className="w-40 h-[2px] bg-gradient-to-r from-white/0 via-white to-white/0 rounded"
         />
-      {/* <h1>Loading</h1> */}
       </div>
     </div>
   );

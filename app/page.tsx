@@ -53,7 +53,7 @@ export default function Home() {
   }, [])
   return (
     <>
-      {showContent && <Loader />}
+      {showContent && <Loader onComplete={showContent} />}
           <Hero />
           <Suspense fallback={<MiniLoader />}>
             <Navbar />
