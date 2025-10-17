@@ -45,12 +45,15 @@ const Footer = dynamic(() => import("@/elements/Footer"), {
 export default function Home() {
   const [showContent, setShowContent] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContent(false)
+    }, 1500);
+    return () => clearTimeout(timer)
+  }, [])
   return (
     <>
-      {showContent && <Loader onComplete={() => setShowContent(false)} />}
-
-      {/* {!showContent && (
-        <> */}
+      {showContent && <Loader />}
           <Hero />
           <Suspense fallback={<MiniLoader />}>
             <Navbar />
