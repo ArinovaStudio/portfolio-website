@@ -18,17 +18,12 @@ export default function AnimatedTitle() {
       backfaceVisibility: "hidden",
     });
 
-    // Use a timeline for consistent sequencing
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power4.inOut",
-          duration: 0.7,
-          delay: 0.6
-        },
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
 
-      // Smooth upward reveal (ARINOVA)
+      // Both animations start simultaneously after a small delay
+      const startDelay = 1.0;
+
       tl.fromTo(
         arinovaRef.current?.children || [],
         {
@@ -45,10 +40,12 @@ export default function AnimatedTitle() {
           filter: "blur(0px)",
           scale: 1,
           stagger: 0.06,
-        }
+          duration: 1,
+          delay: startDelay,
+        },
+        0
       );
 
-      // Downward reveal (STUDIO)
       tl.fromTo(
         studioRef.current?.children || [],
         {
@@ -65,11 +62,13 @@ export default function AnimatedTitle() {
           filter: "blur(0px)",
           scale: 1,
           stagger: 0.06,
+          duration: 1,
+          delay: startDelay,
         },
-        "-=0.5"
+        0
       );
 
-      // Fade out STUDIO smoothly
+      // Fade out STUDIO 1.2s after both animations finish
       tl.to(
         studioRef.current,
         {
@@ -77,7 +76,7 @@ export default function AnimatedTitle() {
           duration: 0.6,
           ease: "power4.out",
         },
-        "+=2"
+        `+=2`
       );
     });
 

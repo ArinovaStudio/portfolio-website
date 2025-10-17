@@ -49,8 +49,8 @@ export default function Home() {
     <>
       {showContent && <Loader onComplete={() => setShowContent(false)} />}
 
-      {!showContent && (
-        <>
+      {/* {!showContent && (
+        <> */}
           <Hero />
           <Suspense fallback={<MiniLoader />}>
             <Navbar />
@@ -65,8 +65,8 @@ export default function Home() {
             <Contact />
             <Footer />
           </Suspense>
-        </>
-      )}
+        {/* </>
+      )} */}
     </>
   );
 }

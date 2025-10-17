@@ -51,19 +51,19 @@ export function Ring(props: JSX.IntrinsicElements["group"]) {
     action.timeScale = 0; // start paused
 
     // Intro animation timeline
-    const tl = gsap.timeline({ delay: 2 }); // 2s delay before intro
+    const tl = gsap.timeline({ delay: 0.4 }); // 2s delay before intro
 
     // 1️⃣ Scale + rotate in over 2s
     tl.to(group.current.scale, {
       x: 1,
       y: 1,
       z: 1,
-      duration: 2,
+      duration: 1,
       ease: "power3.out",
     });
     tl.to(
       group.current.rotation,
-      { y: "+=6.283", duration: 2, ease: "power3.out" },
+      { y: "+=6.283", duration: 1, ease: "power3.out" },
       "<"
     ); // rotate 360° in parallel
 
@@ -75,7 +75,7 @@ export function Ring(props: JSX.IntrinsicElements["group"]) {
 
     // 3️⃣ Smooth slowdown to 0.2
     tl.to({}, {
-      duration: 1,
+      duration: 0.8,
       onUpdate: function () {
         action.timeScale -= (action.timeScale - 0.2) * 0.1;
       }

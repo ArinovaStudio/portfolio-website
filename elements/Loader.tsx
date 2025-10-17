@@ -24,25 +24,21 @@ export default function Loader({ onComplete }: LoaderProps) {
       },
     });
 
-    // Step 1: Text + line fade in
-    tl.from(textRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-    });
+    // Step 0: Show text instantly (no in animation)
+    gsap.set(textRef.current, { opacity: 1, scale: 1 });
+    gsap.set(lineRef.current, { scaleX: 1, transformOrigin: "left center" });
 
-    tl.from(
-      lineRef.current,
-      {
-        scaleX: 0,
-        transformOrigin: "left center",
-        duration: 0.8,
-      },
+    // Step 1: Hold briefly (2s total minus split duration)
+    tl.to({}, { duration: 1.0 });
+
+    // Step 2: Fade out + scale text before split
+    tl.to(
+      textRef.current,
+      { opacity: 0, scale: 0, duration: 0.3, ease: "power2.inOut" },
       "<"
     );
 
-    // Step 2: Hold briefly
-    tl.to({}, { duration: 0.5 });
+    tl.to(lineRef.current, { opacity: 0, duration: 0.2 }, "<");
 
     // Step 3: Split loader (top moves up, bottom moves down)
     tl.to(
@@ -56,7 +52,7 @@ export default function Loader({ onComplete }: LoaderProps) {
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[9999] overflow-hidden bg-black flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[9999] overflow-hidden bg-transparent flex flex-col items-center justify-center"
     >
       {/* Top Half */}
       <div
@@ -76,7 +72,7 @@ export default function Loader({ onComplete }: LoaderProps) {
           ref={textRef}
           className="text-3xl md:text-5xl text-white font-space tracking-wide"
         >
-          Crafting Tomorrow
+          Turning Visulization Into Reality.
         </h1>
 
         {/* Animated Line */}
