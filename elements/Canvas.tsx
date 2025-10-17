@@ -27,7 +27,7 @@ function ThreeD() {
           makeDefault={true} 
           far={1000} 
           near={0.2} 
-          fov={isMobile ? 45 : 24.895} 
+          fov={isMobile ? 49 : 24.895} 
           position={[-5.863, 4.164, 17.658]} 
           rotation={[-0.245, -0.309, -0.076]} 
         />
