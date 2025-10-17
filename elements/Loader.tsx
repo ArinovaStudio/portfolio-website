@@ -80,6 +80,7 @@ export default function Loader({ onComplete }: LoaderProps) {
           ref={lineRef}
           className="w-40 h-[2px] bg-gradient-to-r from-white/0 via-white to-white/0 rounded"
         />
+      {/* <h1>Loading</h1> */}
       </div>
     </div>
   );
