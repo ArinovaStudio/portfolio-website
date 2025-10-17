@@ -48,12 +48,12 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(false)
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(timer)
   }, [])
   return (
     <>
-      {showContent && <Loader onComplete={showContent} />}
+      {showContent && <Loader />}
           <Hero />
           <Suspense fallback={<MiniLoader />}>
             <Navbar />

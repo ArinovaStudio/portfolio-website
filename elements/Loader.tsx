@@ -3,45 +3,35 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-interface LoaderProps {
-  onComplete?: boolean;
-}
-
-export default function Loader({ onComplete }: LoaderProps) {
+export default function Loader() {
   const loaderRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const played = useRef(false); // ✅ ensure animation runs only once
 
   useEffect(() => {
-    if (!loaderRef.current || played.current) return;
+    if (!loaderRef.current) return;
 
-    played.current = true; // mark animation as played
-
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.inOut" },
-      // no automatic onComplete call
-    });
-
-    // Step 0: Show text instantly (no in animation)
+    // Step 0: Show text instantly
     gsap.set(textRef.current, { opacity: 1, scale: 1 });
     gsap.set(lineRef.current, { scaleX: 1, transformOrigin: "left center" });
 
-    // Step 1: Hold briefly (2s total minus split duration)
-    tl.to({}, { duration: 1.0 });
+    // Wait 2 seconds, then start the animation
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.inOut" },
+      delay: 2
+    });
 
-    // Step 2: Fade out + scale text before split
+    // Step 1: Fade out + scale text before split
     tl.to(
       textRef.current,
-      { opacity: 0, scale: 0, duration: 0.3, ease: "power2.inOut" },
-      "<"
+      { opacity: 0, scale: 0, duration: 0.3, ease: "power2.inOut" }
     );
 
     tl.to(lineRef.current, { opacity: 0, duration: 0.2 }, "<");
 
-    // Step 3: Split loader (top moves up, bottom moves down)
+    // Step 2: Split loader (top moves up, bottom moves down)
     tl.to(topRef.current, { y: "-100%", duration: 1, ease: "power4.inOut" }, "<");
     tl.to(bottomRef.current, { y: "100%", duration: 1, ease: "power4.inOut" }, "<");
   }, []);
