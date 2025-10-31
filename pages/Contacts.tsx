@@ -108,7 +108,7 @@ export default function Contact() {
             <span className="text-white font-extrabold">Asked</span>
             <br />
             <span className="text-neutral-500">
-              Questionn<span className="text-white">.</span>
+              Question<span className="text-white">.</span>
             </span>
           </motion.h1>
 

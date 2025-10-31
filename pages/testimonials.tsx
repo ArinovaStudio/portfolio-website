@@ -8,33 +8,49 @@ export default function TestimonialsCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const testimonials = [
-    {
-      id: 1,
-      name: "SONIYA SHARMA",
-      role: "CFO - ARINOVA STUDIO",
-      image:
-        "https://cdn.dribbble.com/users/1188733/screenshots/15749885/media/6b3091b0c5a3e53e3b67a8e6c26b6a0e.jpg?resize=800x600&vertical=center",
-      quote:
-        "Working with our development team has been transformative for our agency. The quality of websites they deliver consistently exceeds client expectations, and their technical expertise has helped us win major projects. Their attention to detail and commitment to deadlines makes them an invaluable asset to our studio.",
-    },
-    {
-      id: 2,
-      name: "JOHN ANDERSON",
-      role: "CEO - TECH INNOVATIONS",
-      image:
-        "https://cdn.dribbble.com/users/1486700/screenshots/16497748/media/4b5c01539d463c0d963b8773a9c4d5a5.jpg?resize=800x600&vertical=center",
-      quote:
-        "The web application developed by this team revolutionized our internal operations. They delivered a scalable, user-friendly platform that increased our team's productivity by 40%. Their understanding of both technical requirements and business objectives made the entire process seamless and highly effective.",
-    },
-    {
-      id: 3,
-      name: "MARIA GARCIA",
-      role: "Design Director - CREATIVE LAB",
-      image:
-        "https://cdn.dribbble.com/users/236966/screenshots/17300205/media/3b61a5a33a2b675e66f6e0c6c4b5e7a5.jpg?resize=800x600&vertical=center",
-      quote:
-        "As a design agency, finding development partners who truly understand design principles is rare. This team not only understands design but enhances it through their technical implementation. The websites they build are pixel-perfect, performant, and exactly what our clients envision. A true design-development partnership.",
-    }
+  {
+    "id": 1,
+    "name": "Rohit Mehra",
+    "role": "Product Manager, FinEdge",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328ecf4f?w=500",
+    "quote": "Working with Arinova Studio was a game-changer for our product launch. Their team delivered top-notch design and functionality on a tight deadline, and the communication was effortless throughout."
+  },
+  {
+    "id": 2,
+    "name": "Priya Iyer",
+    "role": "Creative Director, Lumos Digital",
+    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500",
+    "quote": "Their ability to blend creativity with technical precision truly sets them apart. Our project turned out far better than we imagined — professional, scalable, and beautiful."
+  },
+  {
+    "id": 3,
+    "name": "Aman Khanna",
+    "role": "Founder, UrbanNest Interiors",
+    "image": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=500",
+    "quote": "I was impressed by how well they understood our brand. The website perfectly reflects our identity, and our clients often compliment the design. Totally worth it!"
+  },
+  {
+    "id": 4,
+    "name": "Sneha Patel",
+    "role": "Marketing Head, GreenCore Solutions",
+    "image": "https://images.unsplash.com/photo-1544725176-7c40e5a2c9f9?w=500",
+    "quote": "Their attention to detail is unmatched. From concept to final delivery, everything was smooth and transparent. The results exceeded expectations!"
+  },
+  {
+    "id": 5,
+    "name": "Rajat Sinha",
+    "role": "CTO, TechNova Systems",
+    "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500",
+    "quote": "We were looking for a reliable partner who could handle complex frontend and backend tasks — and they nailed it. The performance improvements are outstanding."
+  },
+  {
+    "id": 6,
+    "name": "Divya Nair",
+    "role": "Operations Manager, SwiftMove Logistics",
+    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500",
+    "quote": "Professional, innovative, and incredibly supportive. They kept us in the loop at every stage and ensured that every aspect of our project aligned with our business goals."
+  }
+
   ];
 
   useEffect(() => {
@@ -146,7 +162,7 @@ export default function TestimonialsCarousel() {
                   src={testimonials[currentSlide].image}
                   alt={testimonials[currentSlide].name}
                   // fill
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover saturate-0"
                 />
               </motion.div>
               <h3 className="text-2xl font-bold font-unbounded mt-4 uppercase text-center">

@@ -20,6 +20,7 @@ import Link from 'next/link';
 // Lenis smooth scroll implementation - FIXED FOR MOBILE
 const useLenis = () => {
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isTabletOrMobile = isTouchDevice || window.innerWidth < 1024;
 
@@ -122,10 +123,11 @@ const cards = [
 
 const ApproachScroll: React.FC = () => {
   useLenis();
+  if (typeof window === "undefined") return;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
   target: containerRef,
-  offset: window.innerWidth < 1024 
+  offset: window?.innerWidth < 1024 
     ? ['start end', 'end start'] 
     : ['start start', 'end end'],
 });
