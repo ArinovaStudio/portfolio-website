@@ -73,7 +73,7 @@ function NavbarOptions({ close }: { close: (val: boolean) => void }) {
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex flex-col items-end gap-4 sm:gap-6 md:gap-8"
+        className="flex flex-col items-end gap-4 sm:gap-6"
       >
         {tabs.map((tab, idx) => (
           <motion.div

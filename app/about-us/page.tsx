@@ -156,7 +156,7 @@ function page() {
           OUR impact <br /> in numbers
         </h1>
 
-        <div className="w-full flex flex-wrap justify-center md:justify-start items-start gap-6 sm:gap-8 md:gap-12">
+        <div className="w-full flex flex-wrap justify-center md:justify-start items-start gap-6 sm:gap-8 md:gap-8">
           <div className="w-full sm:w-[48%] md:w-[31%] h-80 sm:h-96">
             <Image
               src={bulb.src}

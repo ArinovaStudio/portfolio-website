@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 interface LoaderProps {
@@ -14,7 +14,7 @@ export default function Loader({ onComplete }: LoaderProps) {
   const textRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const played = useRef(false); // ensures animation runs only once
-
+  const [visible, setVisible] = useState(true)
   useEffect(() => {
     if (!loaderRef.current || played.current) return;
 
@@ -51,10 +51,15 @@ export default function Loader({ onComplete }: LoaderProps) {
     tl.to(bottomRef.current, { y: "100%", duration: 1, ease: "power4.inOut" }, "<");
   }, [onComplete]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(false)
+    }, 4000)
+  }, [])
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[9999] overflow-hidden bg-transparent flex flex-col items-center justify-center"
+      className={`fixed inset-0 z-[9999] overflow-hidden bg-transparent ${visible ? "flex" : "hidden"} flex-col items-center justify-center`}
     >
       {/* Top Half */}
       <div ref={topRef} className="absolute top-0 left-0 w-full h-1/2 bg-neutral-900" />
