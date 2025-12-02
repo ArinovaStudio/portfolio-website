@@ -4,6 +4,46 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll } from "framer-motion";
 import Lenis from "lenis";
 
+import web_1 from "/public/assets/services/web_1.jpg"
+import web_2 from "/public/assets/services/web_2.png"
+import web_3 from "/public/assets/services/web_2.jpg"
+
+import app_1 from "/public/assets/services/app_1.jpg"
+import app_2 from "/public/assets/services/app_2.jpg"
+import app_3 from "/public/assets/services/app_3.png"
+
+import sw_1 from "/public/assets/services/software_1.jpg"
+import sw_2 from "/public/assets/services/software_2.jpg"
+import sw_3 from "/public/assets/services/software_3.jpg"
+
+
+import ui_2 from "/public/assets/services/ui_2.jpg"
+import ui_3 from "/public/assets/services/ui_3.jpg"
+
+import ani_1 from "/public/assets/services/ani_1.jpg"
+import ani_2 from "/public/assets/services/ani_2.jpg"
+import ani_3 from "/public/assets/services/ani_3.jpg"
+
+
+import cs_1 from "/public/assets/services/cyber_1.png"
+import cs_2 from "/public/assets/services/cyber_2.jpg"
+import cs_3 from "/public/assets/services/cyber_3.jpg"
+
+import ec_1 from "/public/assets/services/ec_1.jpg"
+import ec_2 from "/public/assets/services/ec_2.jpg"
+import ec_3 from "/public/assets/services/ec_3.jpg"
+
+import pd_1 from "/public/assets/services/pd_1.jpg"
+import pd_2 from "/public/assets/services/pd_2.jpg"
+import pd_3 from "/public/assets/services/pd_2.png"
+
+import ai_1 from "/public/assets/services/ai_1.png"
+import ai_2 from "/public/assets/services/ai_2.png"
+import ai_3 from "/public/assets/services/ai_3.jpeg"
+
+
+
+
 interface ServiceImages {
   [key: string]: string[];
 }
@@ -25,49 +65,35 @@ function Services() {
 
   const serviceImages: Record<string, string[]> = {
     "Website Development": [
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop",
+      web_1,
+      web_2,
+      web_3
     ],
     "Mobile App Development": [
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=400&h=400&fit=crop",
+      app_1, app_2, app_3
     ],
     "Software Tools": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+      sw_1, sw_2, sw_3
     ],
     "UI/UX Design": [
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=400&fit=crop",
+      ui_2
       "https://images.unsplash.com/photo-1551434678-e076ca223a692?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop",
+      ui_3
     ],
     "3D Animation": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+      ani_1, ani_2, ani_3
     ],
     "AI/ML": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+      ai_1, ai_2, ai_3
     ],
     "Cyber Security": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+      cs_1, cs_2, cs_3
     ],
     "E-commerce Platforms": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+       ec_1, ec_2, ec_3
     ],
     "Product Design": [
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop",
+      pd_1, pd_2, pd_3
     ],
   };
 
