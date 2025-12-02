@@ -11,6 +11,7 @@ import { fetchData } from "@/sanity/lib/fetch";
 import MiniLoader from "@/elements/SmallLoader";
 import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function page() {
   const { setCursor } = useCursor();
@@ -61,19 +62,19 @@ function page() {
       <div className="w-screen min-h-screen h-auto">
         <Title title="Porrtfolio" slogan="Crafting seamless digital experiences with precision." />
         <motion.div
-          className="flex flex-wrap w-full px-4 sm:px-8 md:px-12 lg:px-16 gap-4 sm:gap-8 md:gap-12 lg:gap-16 justify-start items-center my-10"
+          className="flex flex-wrap w-full px-4 sm:px-8 md:px-12 lg:px-16 gap-4 sm:gap-8 md:gap-12 lg:gap-10 justify-start items-center my-10"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
           {products.map((items: any, i: number) => (
-            <div className="w-full h-full" key={i}>
+            <Link href={`/portfolio/${items.slug.current}`} className="w-[48%] h-full" key={i}>
               <motion.div
                 onMouseEnter={() => setCursor("label", "View")}
                 onMouseLeave={() => setCursor("default")}
                 key={i}
-                className="w-full sm:w-[calc(50%-1rem)] md:w-[calc(50%-1.5rem)] lg:w-[47%] h-[20rem] sm:h-[25rem] md:h-[28rem] lg:h-[30rem] relative overflow-hidden"
+                className="w-full h-[20rem] sm:h-[25rem] md:h-[28rem] lg:h-[30rem] relative overflow-hidden"
                 variants={itemVariants as any}
               >
                 <Image
@@ -86,7 +87,7 @@ function page() {
               <h1 className="w-full text-base font-unbounded py-3">
                 {items.title}
               </h1>
-            </div>
+            </Link>
           ))}
         </motion.div>
       </div>

@@ -71,14 +71,22 @@ export const slug = {
   }`,
 
   portfolioBySlug: (slug: string) => `*[_type == "portfolio" && slug.current == "${slug}"][0]{
-    _id,
-    title,
-    slug,
-    mainImage,
-    description,
-    technologies,
-    link
-  }`,
+  _id,
+  title,
+  slug,
+  miniDescription,
+  category,
+  hostedUrl,
+  mainImage{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
+  publishedAt,
+  body
+}`,
 
   productBySlug: (slug: string) => `*[_type == "products" && slug.current == "${slug}"][0]{
     title,

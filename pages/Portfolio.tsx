@@ -84,7 +84,7 @@ export default function Portfolio() {
         <div className="w-full flex-grow relative mt-4 sm:-mt-16 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
-              // onClick={() => router.push(`/portfolio/${currentProduct.slug.current}`)}
+              onClick={() => router.push(`/portfolio/${currentProduct.slug.current}`)}
               key={currentProduct._id}
               variants={fadeVariant as any}
               initial="initial"
@@ -111,7 +111,7 @@ export default function Portfolio() {
                   <div className="px-3 py-1 w-fit bg-white backdrop-blur-sm text-black text-lg sm:text-xl md:text-2xl font-dm mb-4">
                     {currentProduct.category}
                   </div>
-                  <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-tall mb-3 tracking-wide font-medium">
+                  <h1 className="text-3xl sm:text-5xl md:text-4xl lg:text-6xl w-full font-tall mb-3 tracking-wide font-medium">
                     {currentProduct.title}
                   </h1>
                   <p className="font-dm italic text-base sm:text-lg md:text-xl font-light max-w-xl">

@@ -6,7 +6,7 @@ import Lenis from "lenis";
 
 import web_1 from "/public/assets/services/web_1.jpg"
 import web_2 from "/public/assets/services/web_2.png"
-import web_3 from "/public/assets/services/web_2.jpg"
+import web_3 from "/public/assets/services/web_3.jpg"
 
 import app_1 from "/public/assets/services/app_1.jpg"
 import app_2 from "/public/assets/services/app_2.jpg"
@@ -16,7 +16,7 @@ import sw_1 from "/public/assets/services/software_1.jpg"
 import sw_2 from "/public/assets/services/software_2.jpg"
 import sw_3 from "/public/assets/services/software_3.jpg"
 
-
+import ui_1 from "/public/assets/services/ui.jpg"
 import ui_2 from "/public/assets/services/ui_2.jpg"
 import ui_3 from "/public/assets/services/ui_3.jpg"
 
@@ -40,6 +40,7 @@ import pd_3 from "/public/assets/services/pd_2.png"
 import ai_1 from "/public/assets/services/ai_1.png"
 import ai_2 from "/public/assets/services/ai_2.png"
 import ai_3 from "/public/assets/services/ai_3.jpeg"
+import { StaticImageData } from "next/image";
 
 
 
@@ -63,7 +64,7 @@ function Services() {
     "Product Design",
   ];
 
-  const serviceImages: Record<string, string[]> = {
+  const serviceImages: Record<string, StaticImageData[]> = {
     "Website Development": [
       web_1,
       web_2,
@@ -76,8 +77,8 @@ function Services() {
       sw_1, sw_2, sw_3
     ],
     "UI/UX Design": [
-      ui_2
-      "https://images.unsplash.com/photo-1551434678-e076ca223a692?w=400&h=400&fit=crop",
+      ui_1,
+      ui_2,
       ui_3
     ],
     "3D Animation": [
@@ -159,7 +160,7 @@ function Services() {
 
         {services[currentView] &&
           serviceImages[services[currentView]].map(
-            (img: string, idx: number) => {
+            (img: any, idx: number) => {
               const position = getRandomPosition(currentView * 3 + idx);
               return (
                 <motion.div
@@ -175,7 +176,7 @@ function Services() {
                   }}
                 >
                   <img
-                    src={img}
+                    src={img.src}
                     alt=""
                     className="w-full h-full object-cover"
                   />

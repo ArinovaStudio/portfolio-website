@@ -23,7 +23,8 @@ interface ImageItem {
 function DesignGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<ImageItem[]>([]);
+
   const getData = async () => {
     const data = await fetchData("designGallery");
     if (data) {
@@ -68,7 +69,18 @@ function DesignGallery() {
     };
   }, []);
 
+  // ---------- 1) DYNAMIC HEIGHT BASED ON IMAGE COUNT ----------
+  // each image gets some scroll space; tweak constants as you like
+  const totalImages = images.length || 1;
+  const containerHeightVh = Math.max(200, totalImages * 120); // min 200vh
+
+  // ---------- 2) SEQUENTIAL IMAGE APPEAR / HOLD / DISAPPEAR ----------
+  // We'll dedicate a portion of the scroll (0.05 → 0.8) to cycling images
+  const imagesStartProgress = 0.05;
   const imagesEndProgress = 0.8;
+  const imagesRange = imagesEndProgress - imagesStartProgress;
+  const segmentLength = imagesRange / totalImages;
+
   const finalMessageOpacity = useTransform(
     scrollYProgress,
     [imagesEndProgress, imagesEndProgress + 0.1],
@@ -85,54 +97,59 @@ function DesignGallery() {
       id="design-gallery"
       ref={containerRef}
       className="relative"
-      style={{ height: "600vh" }}
+      style={{ height: `${containerHeightVh}vh` }}
     >
       <div className="sticky top-0 min-h-screen h-screen w-screen bg-background flex justify-center items-center overflow-hidden">
-        {/* Images Layer - Behind text */}
+        {/* Images Layer */}
         <div className="absolute inset-0 z-0">
           {images.map((image: ImageItem, index: number) => {
-            const totalImages = images.length;
-            const appearStart = 0.05 + index * 0.06;
-            const appearEnd = appearStart + 0.08;
-            const disappearStart = 0.35 + index * 0.035;
-            const disappearEnd = disappearStart + 0.08;
+            // Each image gets its own scroll segment
+            const segmentStart =
+              imagesStartProgress + segmentLength * index;
+            const segmentEnd = segmentStart + segmentLength;
+
+            // inside each segment: 0–30% fade in, 30–70% hold, 70–100% fade out
+            const appearEnd = segmentStart + segmentLength * 0.3;
+            const disappearStart = segmentStart + segmentLength * 0.7;
 
             let opacity = 0;
-            let yPosition = 100;
+            let yPosition = 20; // translateY in %
 
-            if (scrollProgress < appearStart) {
-              opacity = 0;
-              yPosition = 100;
-            } else if (
-              scrollProgress >= appearStart &&
+            if (
+              scrollProgress >= segmentStart &&
               scrollProgress < appearEnd
             ) {
-              const progress =
-                (scrollProgress - appearStart) / (appearEnd - appearStart);
-              opacity = progress;
-              yPosition = 100 - progress * 100;
+              // fade in
+              const localProgress =
+                (scrollProgress - segmentStart) / (appearEnd - segmentStart);
+              opacity = localProgress;
+              yPosition = 20 - localProgress * 20; // 20% → 0
             } else if (
               scrollProgress >= appearEnd &&
               scrollProgress < disappearStart
             ) {
+              // fully visible
               opacity = 1;
               yPosition = 0;
             } else if (
               scrollProgress >= disappearStart &&
-              scrollProgress < disappearEnd
+              scrollProgress < segmentEnd
             ) {
-              const progress =
+              // fade out
+              const localProgress =
                 (scrollProgress - disappearStart) /
-                (disappearEnd - disappearStart);
-              opacity = 1 - progress;
-              yPosition = -(progress * 100);
+                (segmentEnd - disappearStart);
+              opacity = 1 - localProgress;
+              yPosition = -localProgress * 20; // 0 → -20%
             } else {
+              // outside this segment
               opacity = 0;
-              yPosition = -100;
+              yPosition = 20;
             }
 
             return (
               <React.Fragment key={image._id}>
+                {/* Desktop / tablet */}
                 <motion.div
                   className="hidden md:block absolute rounded-lg overflow-hidden shadow-2xl"
                   style={{
@@ -140,7 +157,7 @@ function DesignGallery() {
                     height: image.height,
                     left: image.left,
                     top: image.top,
-                    opacity: opacity,
+                    opacity,
                     y: `${yPosition}%`,
                   }}
                 >
@@ -151,6 +168,8 @@ function DesignGallery() {
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
+
+                {/* Mobile */}
                 <motion.div
                   className="block md:hidden absolute rounded-lg overflow-hidden shadow-2xl"
                   style={{
@@ -158,7 +177,7 @@ function DesignGallery() {
                     height: image.mobileHeight,
                     left: image.mobileLeft,
                     top: image.mobileTop,
-                    opacity: opacity,
+                    opacity,
                     y: `${yPosition}%`,
                   }}
                 >
@@ -174,7 +193,7 @@ function DesignGallery() {
           })}
         </div>
 
-        {/* Design Gallery Text - Always centered, stays visible until end */}
+        {/* Main Title */}
         <motion.h1
           className="relative z-20 text-5xl sm:text-6xl md:text-8xl font-bold uppercase text-white text-center px-4 mix-blend-difference"
           style={{
@@ -186,7 +205,7 @@ function DesignGallery() {
           <span className="font-stretch">Dessign</span> Gallery
         </motion.h1>
 
-        {/* Final Message - Appears after images are done */}
+        {/* Final Message */}
         <motion.div
           className="absolute z-20 text-center px-6"
           style={{
