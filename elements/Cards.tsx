@@ -8,6 +8,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
 
 export default function Cards({ blog }: { blog: any }) {
+  // console.log(blog)
   const router = useRouter()
   return (
     <motion.div
@@ -35,13 +36,17 @@ export default function Cards({ blog }: { blog: any }) {
         <div className="flex gap-2.5 items-center">
 
         <div className="w-6 h-6 my-1 overflow-hidden">
-          <Image 
-          src={urlFor(blog.author.image).url()}
-          alt={blog.author.name}
-          width={100}
-          height={100}
-          className="w-full h-full object-cover rounded-full"
-          />
+          {blog.author.image ? (
+            <Image 
+            src={urlFor(blog.author.image).url()}
+            alt={blog.author.name}
+            width={100}
+            height={100}
+            className="w-full h-full object-cover rounded-full"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-300 rounded-full">{blog.author.name.charAt(0)}</div>
+          )}
         </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

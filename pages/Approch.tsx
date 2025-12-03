@@ -1,34 +1,33 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useTransition } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Asterisk } from 'lucide-react';
-import ApprochCard from '@/elements/ApprochCard';
+import React, { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Asterisk } from "lucide-react";
+import ApprochCard from "@/elements/ApprochCard";
 
-import core from "@/public/icons/compass.png"
-import audiance from "@/public/icons/audiance.jpg"
-import stratergies from "@/public/icons/stratergies.jpg"
-import experience from "@/public/icons/design.jpg"
-import code from "@/public/icons/code.jpg"
-import launch from "@/public/icons/launch.jpg"
-import Products from '@/elements/Products';
-import { fetchData } from '@/sanity/lib/fetch';
-import Link from 'next/link';
-
-
+import core from "@/public/icons/compass.png";
+import audiance from "@/public/icons/audiance.jpg";
+import stratergies from "@/public/icons/stratergies.jpg";
+import experience from "@/public/icons/design.jpg";
+import code from "@/public/icons/code.jpg";
+import launch from "@/public/icons/launch.jpg";
+import Products from "@/elements/Products";
+import Link from "next/link";
 
 // Lenis smooth scroll implementation - FIXED FOR MOBILE
 const useLenis = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const isTabletOrMobile = isTouchDevice || window.innerWidth < 1024;
 
     // Skip Lenis on mobile/tablet
     if (isTabletOrMobile) return;
 
     class Lenis {
-      raf = null;
+      raf: number | null = null;
       scrollTop = 0;
       targetScrollTop = 0;
       ease = 0.075;
@@ -39,14 +38,17 @@ const useLenis = () => {
 
       init() {
         this.animate();
-        window.addEventListener('wheel', this.onWheel);
+        window.addEventListener("wheel", this.onWheel);
       }
 
-      onWheel = (e) => {
+      onWheel = (e: WheelEvent) => {
         this.targetScrollTop += e.deltaY;
         this.targetScrollTop = Math.max(
           0,
-          Math.min(this.targetScrollTop, document.body.scrollHeight - window.innerHeight)
+          Math.min(
+            this.targetScrollTop,
+            document.body.scrollHeight - window.innerHeight
+          )
         );
       };
 
@@ -58,7 +60,7 @@ const useLenis = () => {
 
       destroy() {
         if (this.raf) cancelAnimationFrame(this.raf);
-        window.removeEventListener('wheel', this.onWheel);
+        window.removeEventListener("wheel", this.onWheel);
       }
     }
 
@@ -66,7 +68,6 @@ const useLenis = () => {
     return () => lenis.destroy();
   }, []);
 };
-
 
 const cards = [
   {
@@ -109,68 +110,110 @@ const cards = [
     title: "Launch & Elevate",
     description:
       "We launch your project strategically, track results, and evolve continuously for lasting growth.",
-    image: launch
+    image: launch,
   },
-    {
+  {
     id: 7,
     title: "Launch & Elevate",
     description:
       "We launch your project strategically, track results, and evolve continuously for lasting growth.",
-    image: launch
-  }
+    image: launch,
+  },
 ];
-
 
 const ApproachScroll: React.FC = () => {
   useLenis();
-  if (typeof window === "undefined") return;
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Safe check for window to decide offset
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false;
+
   const { scrollYProgress } = useScroll({
-  target: containerRef,
-  offset: window?.innerWidth < 1024 
-    ? ['start end', 'end start'] 
-    : ['start start', 'end end'],
-});
+    target: containerRef,
+    offset: isMobile ? ["start end", "end start"] : ["start start", "end end"],
+  });
 
   // Header fade
   const headerOpacity = useTransform(scrollYProgress, [0.7, 0.85], [1, 0]);
 
-  const scale = useTransform(scrollYProgress, [0.1, 0.25], [0.8, 0.6])
+  const scale = useTransform(scrollYProgress, [0.1, 0.25], [0.8, 0.6]);
   const leftTextX = useTransform(scrollYProgress, [0.1, 0.25], [0, -100]);
   const rightTextX = useTransform(scrollYProgress, [0.1, 0.25], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0.7, 0.85], [1, 0]);
-  const pos = useTransform(scrollYProgress, [0.1, 0.25], [-100, -350])
-  // Card appearance (15% to 22%)
+  const pos = useTransform(scrollYProgress, [0.1, 0.25], [-100, -350]);
+
   const cardAppearScale = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
-  const cardAppearOpacity = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
-  
+  const cardAppearOpacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.22],
+    [0, 1]
+  );
 
-const card1Opacity = useTransform(scrollYProgress, [0.25, 0.28, 0.35, 0.38], [1, 1, 1, 0]);
-const card2Opacity = useTransform(scrollYProgress, [0.35, 0.38, 0.45, 0.48], [0, 1, 1, 0]);
-const card3Opacity = useTransform(scrollYProgress, [0.45, 0.48, 0.55, 0.58], [0, 1, 1, 0]);
-const card4Opacity = useTransform(scrollYProgress, [0.55, 0.58, 0.65, 0.68], [0, 1, 1, 0]);
-const card5Opacity = useTransform(scrollYProgress, [0.65, 0.68, 0.75, 0.78], [0, 1, 1, 0]);
-const card6Opacity = useTransform(scrollYProgress, [0.75, 0.78, 0.85, 1], [0, 1, 1, 1]);
-const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0, 1, 1]);
+  const card1Opacity = useTransform(
+    scrollYProgress,
+    [0.25, 0.28, 0.35, 0.38],
+    [1, 1, 1, 0]
+  );
+  const card2Opacity = useTransform(
+    scrollYProgress,
+    [0.35, 0.38, 0.45, 0.48],
+    [0, 1, 1, 0]
+  );
+  const card3Opacity = useTransform(
+    scrollYProgress,
+    [0.45, 0.48, 0.55, 0.58],
+    [0, 1, 1, 0]
+  );
+  const card4Opacity = useTransform(
+    scrollYProgress,
+    [0.55, 0.58, 0.65, 0.68],
+    [0, 1, 1, 0]
+  );
+  const card5Opacity = useTransform(
+    scrollYProgress,
+    [0.65, 0.68, 0.75, 0.78],
+    [0, 1, 1, 0]
+  );
+  const card6Opacity = useTransform(
+    scrollYProgress,
+    [0.75, 0.78, 0.85, 1],
+    [0, 1, 1, 1]
+  );
+  const card7Opacity = useTransform(
+    scrollYProgress,
+    [0.75, 0.8, 0.85, 1],
+    [0, 0, 1, 1]
+  );
 
-
-  
-  // Last card expansion (85% to 100%)
   const lastCardScale = useTransform(scrollYProgress, [0.85, 1], [1, 5]);
-  const lastCardBorderRadius = useTransform(scrollYProgress, [0.85, 1], [24, 0]);
+  const lastCardBorderRadius = useTransform(
+    scrollYProgress,
+    [0.85, 1],
+    [24, 0]
+  );
   const finalTextOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1]);
 
-  const cardOpacities = [card1Opacity, card2Opacity, card3Opacity, card4Opacity, card5Opacity, card6Opacity, card7Opacity];
+  const cardOpacities = [
+    card1Opacity,
+    card2Opacity,
+    card3Opacity,
+    card4Opacity,
+    card5Opacity,
+    card6Opacity,
+    card7Opacity,
+  ];
 
   return (
     <div ref={containerRef} className="relative md:h-[800vh] h-[600vh]">
       <div className="sticky top-0 h-screen w-screen overflow-hidden bg-background flex items-center justify-center">
-        {/* Header - Above the main heading */}
-        <motion.div 
+        {/* Header */}
+        <motion.div
           className="absolute left-1/2 -translate-x-1/2 capitalize text-xl text-gray-400 flex justify-center items-center gap-2 z-20"
-          style={{ 
+          style={{
             y: pos,
-            opacity: headerOpacity 
+            opacity: headerOpacity,
           }}
         >
           <Asterisk className="text-gray-400" size={28} />
@@ -201,8 +244,8 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
           </h1>
         </motion.div>
 
-        {/* Card Container */}
-        <motion.div 
+        {/* Card stack */}
+        <motion.div
           className="relative w-[90%] h-[400px] sm:w-[500px] sm:h-[600px] flex items-center justify-center"
           style={{
             scale: cardAppearScale,
@@ -211,11 +254,11 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
         >
           {cards.map((card, index) => {
             const isLast = index === cards.length - 1;
-            
+
             return (
               <motion.div
                 key={card.id}
-                className={`absolute w-full h-[500px] sm:w-[450px] sm:h-[560px] rounded-xl bg-white p-3.5 flex items-center justify-center`}
+                className="absolute w-full h-[500px] sm:w-[450px] sm:h-[560px] rounded-xl bg-white p-3.5 flex items-center justify-center"
                 style={{
                   scale: isLast ? lastCardScale : 1,
                   borderRadius: isLast ? lastCardBorderRadius : 24,
@@ -224,12 +267,12 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
                 }}
               >
                 {!isLast ? (
-                    <ApprochCard 
+                  <ApprochCard
                     id={card.id}
                     description={card.description}
                     title={card.title}
                     image={card.image}
-                    />
+                  />
                 ) : (
                   <motion.div
                     className="absolute inset-0 flex items-center justify-center flex-col bg-white"
@@ -239,12 +282,19 @@ const card7Opacity = useTransform(scrollYProgress, [0.75, 0.80, 0.85, 1], [0, 0,
                     }}
                   >
                     <p className="text-xs font-bold text-center text-black font-space capitalize scale-[0.25] sm:scale-100">
-                        We don't only help businesses thrive <br />
-                        <span className='font-unbounded'>we craft our own products as well.</span>
+                      We don&apos;t only help businesses thrive <br />
+                      <span className="font-unbounded">
+                        we craft our own products as well.
+                      </span>
                     </p>
 
                     <Products />
-                    <Link href={"/products"} className='text-xs scale-50 font-space text-right w-[37vw] text-black uppercase font-medium'>View all</Link>
+                    <Link
+                      href="/products"
+                      className="text-xs scale-50 font-space text-right w-[37vw] text-black uppercase font-medium"
+                    >
+                      View all
+                    </Link>
                   </motion.div>
                 )}
               </motion.div>
