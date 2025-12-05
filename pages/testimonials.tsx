@@ -4,52 +4,68 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+import pic_1 from "@/public/testimonials/rohit_g.jpeg";
+import pic_2 from "@/public/testimonials/khushi.jpeg";
+import pic_3 from "@/public/testimonials/gaurav.jpeg";
+import pic_4 from "@/public/testimonials/subham.jpeg";
+import pic_5 from "@/public/testimonials/aryan.jpeg";
+import pic_6 from "@/public/testimonials/hardeep.jpeg";
+import pic_7 from "@/public/testimonials/shagun.jpeg";
+
+
 export default function TestimonialsCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const testimonials = [
   {
     "id": 1,
-    "name": "Rohit Mehra",
-    "role": "Product Manager, FinEdge",
-    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328ecf4f?w=500",
-    "quote": "Working with Arinova Studio was a game-changer for our product launch. Their team delivered top-notch design and functionality on a tight deadline, and the communication was effortless throughout."
+    "name": "Rohit gunjal",
+    "role": "Business Owner",
+    "image": pic_1,
+    "quote": "We needed a SaaS product built from scratch and had no idea where to start. The ARINOVA team guided us through every step and delivered something way better than what we had imagined. Super happy with the results."
   },
-  {
+    {
     "id": 2,
-    "name": "Priya Iyer",
-    "role": "Creative Director, Lumos Digital",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500",
-    "quote": "Their ability to blend creativity with technical precision truly sets them apart. Our project turned out far better than we imagined — professional, scalable, and beautiful."
+    "name": "Khushi Shah",
+    "role": "Fitness Coach",
+    "image": pic_2,
+    "quote": "What I loved most about ARINOVA is how patient they were. They listened to every small detail and didn’t rush anything. The final product really reflects that."
   },
-  {
+    {
     "id": 3,
-    "name": "Aman Khanna",
-    "role": "Founder, UrbanNest Interiors",
-    "image": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=500",
-    "quote": "I was impressed by how well they understood our brand. The website perfectly reflects our identity, and our clients often compliment the design. Totally worth it!"
+    "name": "Gaurav Pawar",
+    "role": "Brand Manager",
+    "image": pic_3,
+    "quote": "Honestly, working with ARINOVA was the best decision we made this year. They completely revamped our website, and the difference is unbelievable. It loads faster, looks cleaner, and our customers actually compliment it now."
   },
-  {
+    {
     "id": 4,
-    "name": "Sneha Patel",
-    "role": "Marketing Head, GreenCore Solutions",
-    "image": "https://images.unsplash.com/photo-1544725176-7c40e5a2c9f9?w=500",
-    "quote": "Their attention to detail is unmatched. From concept to final delivery, everything was smooth and transparent. The results exceeded expectations!"
+    "name": "Subham gunjal",
+    "role": "IT Specialist",
+    "image": pic_4,
+    "quote": "Our systems kept getting small security issues, and it was becoming stressful. ARINOVA did a full audit, fixed everything, and now the whole thing runs smoothly. I finally sleep peacefully."
   },
-  {
+    {
     "id": 5,
-    "name": "Rajat Sinha",
-    "role": "CTO, TechNova Systems",
-    "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500",
-    "quote": "We were looking for a reliable partner who could handle complex frontend and backend tasks — and they nailed it. The performance improvements are outstanding."
+    "name": "Aryan",
+    "role": "Entrepreneur",
+    "image": pic_5,
+    "quote": "I’ve never seen a team respond so quickly and professionally. Whenever we had questions or needed changes, they were always available. You don’t get this kind of support everywhere."
   },
-  {
+    {
     "id": 6,
-    "name": "Divya Nair",
-    "role": "Operations Manager, SwiftMove Logistics",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500",
-    "quote": "Professional, innovative, and incredibly supportive. They kept us in the loop at every stage and ensured that every aspect of our project aligned with our business goals."
-  }
+    "name": "Hardeep singh",
+    "role": "Shop Owner",
+    "image": pic_6,
+    "quote": "Our old website was outdated and slow. After ARINOVA rebuilt it, it genuinely started feeling like a proper modern business. Sales improved too. They know what they're doing."
+  },
+    {
+    "id": 7,
+    "name": "Shagun",
+    "role": "Digital Marketer",
+    "image": pic_7,
+    "quote": "We’ve worked with other tech companies, but the experience with ARINOVA was totally different. They actually care about the project, not just the payment. You can see the passion in their work."
+  },
 
   ];
 
@@ -159,7 +175,7 @@ export default function TestimonialsCarousel() {
                 className="relative w-72 sm:w-80 md:w-96 h-72 sm:h-80 md:h-96 overflow-hidden mr-0 flex justify-center items-center sm:mr-14"
               >
                 <img
-                  src={testimonials[currentSlide].image}
+                  src={testimonials[currentSlide].image.src}
                   alt={testimonials[currentSlide].name}
                   // fill
                   className="w-full h-full object-cover saturate-0"

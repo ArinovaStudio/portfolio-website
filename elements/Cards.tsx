@@ -45,7 +45,7 @@ export default function Cards({ blog }: { blog: any }) {
             className="w-full h-full object-cover rounded-full"
             />
           ) : (
-            <div className="w-full h-full bg-gray-300 rounded-full">{blog.author.name.charAt(0)}</div>
+            <div className="w-full h-full bg-purple-400/10 text-purple-500 grid place-items-center rounded-full">{blog.author.name.charAt(0)}</div>
           )}
         </div>
         <motion.p

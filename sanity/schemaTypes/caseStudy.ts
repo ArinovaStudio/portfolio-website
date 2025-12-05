@@ -10,14 +10,17 @@ export const caseType = defineType({
         defineField({
       name: 'businessName',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
+      validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
       },
@@ -25,14 +28,17 @@ export const caseType = defineType({
     defineField({
         name: "miniDescription",
         type: "string",
+        validation: (Rule) => Rule.required(),
     }),
     defineField({
         name: "percentage",
         type: "number",
+        validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mainImage',
       type: 'image',
+      validation: (Rule) => Rule.required(),
       options: {
         hotspot: true,
       },
@@ -47,10 +53,12 @@ export const caseType = defineType({
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'body',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
   name: 'stats',

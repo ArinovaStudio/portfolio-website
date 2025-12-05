@@ -10,6 +10,7 @@ export const portfolioType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,19 +18,22 @@ export const portfolioType = defineType({
       options: {
         source: "title",
       },
+      validation: (Rule) => Rule.required(),
     }),
         defineField({
       name: "miniDescription",
       title: "Mini Description",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "category",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "hostedUrl",
-      type: "string"
+      type: "string",
     }),
     defineField({
       name: "mainImage",
@@ -37,6 +41,7 @@ export const portfolioType = defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: "alt",
@@ -48,10 +53,12 @@ export const portfolioType = defineType({
     defineField({
       name: "publishedAt",
       type: "datetime",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "body",
       type: "blockContent",
+      validation: (Rule) => Rule.required(),
     }),
   ]
 });

@@ -10,6 +10,7 @@ export const ProductType = defineType({
     defineField({
       name: 'title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -17,6 +18,7 @@ export const ProductType = defineType({
       options: {
         source: 'title',
       },
+      validation: (Rule) => Rule.required(),
     }),
         defineField({
       name: 'url',
@@ -25,6 +27,7 @@ export const ProductType = defineType({
     defineField({
       name: 'mainImage',
       type: 'image',
+      validation: (Rule) => Rule.required(),
       options: {
         hotspot: true,
       },
@@ -40,10 +43,12 @@ export const ProductType = defineType({
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'body',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
   ]
 })
