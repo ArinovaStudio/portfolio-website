@@ -3,19 +3,20 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { fetchData } from "@/sanity/lib/fetch";
 import MiniLoader from "@/elements/SmallLoader";
 import { urlFor } from "@/sanity/lib/image";
 import Navbar from "@/elements/Navbar";
 import Footer from "@/elements/Footer";
 import { portableTextComponents } from "@/components/PortableTextComponent";
+import { LucideArrowLeft } from "lucide-react";
 
 
 
 const CaseStudyPage = () => {
   const params = useParams();
-    
+  const router = useRouter();
 //   console.log(params.get("slug"));
   
   const [caseStudies, setCaseStudies] = useState<any>([])
@@ -44,11 +45,21 @@ const CaseStudyPage = () => {
     <>
     <Navbar />
     <div className="bg-background text-white min-h-screen py-16 px-6 max-w-7xl mx-auto">
-      {/* Title */}
-
-      {/* Mini description */}
-
-      {/* Main Image */}
+              <header className="mb-10 flex items-center justify-between">
+                <div className="space-y-2 w-full">
+                  <div onClick={() => router.back()} className="flex gap-2 w-full justify-between items-center">
+                  <p className="flex gap-2"><LucideArrowLeft />Back</p>  
+                  <div className="">
+                                <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-500">
+                    BLOGS
+                  </p>
+                  <p className="text-xs sm:text-sm text-neutral-400">
+                    A closer look at one of blog.
+                  </p>
+                  </div>
+                  </div>
+                </div>
+              </header>
       {caseStudies.mainImage && (
           <div className="mb-8 w-full h-[32rem] relative">
           <Image
