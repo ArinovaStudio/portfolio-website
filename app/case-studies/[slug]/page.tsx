@@ -9,6 +9,7 @@ import MiniLoader from "@/elements/SmallLoader";
 import { urlFor } from "@/sanity/lib/image";
 import Navbar from "@/elements/Navbar";
 import Footer from "@/elements/Footer";
+import { portableTextComponents } from "@/components/PortableTextComponent";
 
 
 
@@ -84,8 +85,8 @@ const CaseStudyPage = () => {
       )}
 
       {/* Rich text body */}
-      <div className="prose prose-invert max-w-none border-t-2 pt-6 border-neutral-800">
-        <PortableText value={caseStudies.body} />
+      <div className="max-w-none border-t-2 pt-6 border-neutral-800">
+        <PortableText value={caseStudies.body} components={portableTextComponents}  />
       </div>
     </div>
     <Footer />

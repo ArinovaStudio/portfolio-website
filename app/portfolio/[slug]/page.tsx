@@ -8,6 +8,7 @@ import { ContactOverlay } from "@/elements/ContactOverlay";
 import { PreviewDrawer } from "@/elements/PreviewDrawer";
 import Link from "next/link";
 import { LucideArrowLeft } from "lucide-react";
+import { portableTextComponents } from "@/components/PortableTextComponent";
 
 type SanityImage = {
   asset?: {
@@ -144,8 +145,8 @@ export default function PortfolioDetailsPage() {
 
               {/* BODY CONTENT */}
               {project?.body ? (
-                <div className="prose prose-invert max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-p:text-[15px] prose-p:leading-relaxed">
-                  <PortableText value={project.body} />
+                <div className="max-w-none">
+                  <PortableText value={project.body} components={portableTextComponents}  />
                 </div>
               ) : (
                 <p className="text-sm sm:text-base text-neutral-500">
