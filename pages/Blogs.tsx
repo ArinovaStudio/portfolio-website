@@ -52,7 +52,7 @@ export default function Blogs() {
       {/* Blog Cards */}
       <div className="w-full h-1/2 sm:h-5/6 mt-0 sm:-mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
         {
-            blogs.map((items: any, idx: number) => (
+            blogs.slice(0, 3).map((items: any, idx: number) => (
                 <Link href={`/blogs/${items.slug.current}`} key={idx}>
                 <Cards 
                 blog={items}
