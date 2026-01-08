@@ -30,31 +30,9 @@ export const founders = [
     ],
   },
   {
-    name: "Rajneesh Verma",
-    image: r,
-    position: "Managing Director",
-    links: [
-      {
-        title: "instagram",
-        url: "https://instagram.com/rajneeshmeenaverma",
-        icon: FaInstagram,
-      },
-            {
-        title: "linkedin",
-        url: "https://linkedin.com/in/rajneesh-verma-4a871825b",
-        icon: FaLinkedinIn,
-      },
-                  {
-        title: "twitter",
-        url: "https://x.com/",
-        icon: FaXTwitter,
-      },
-    ],
-  },
-  {
     name: "Sayam Khajuria",
     image: s,
-    position: "COO, CO-Founder",
+    position: "M.D, CO-Founder",
     links: [
       {
         title: "instagram",
@@ -64,18 +42,6 @@ export const founders = [
       {
         title: "Linkedin",
         url: "https://www.linkedin.com/in/sayam-khajuria",
-        icon: FaLinkedinIn,
-      },
-    ],
-  },
-  {
-    name: "Ashutosh Pandey",
-    image: ash,
-    position: "Chief Technical Officer (CTO)",
-    links: [
-      {
-        title: "linkedin",
-        url: "https://linkedin.com/in/ashutosh-pandey-87543b269",
         icon: FaLinkedinIn,
       },
     ],
