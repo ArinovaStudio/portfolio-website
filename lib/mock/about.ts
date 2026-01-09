@@ -1,9 +1,7 @@
 import { LucideGlobe } from "lucide-react";
 import a from "@/public/assets/adarsh.jpeg";
-import r from "@/public/assets/rajneesh.png";
 import s from "@/public/assets/sayam.jpg";
 import aq from "@/public/assets/aquib.jpg";
-import ash from "@/public/assets/ashutosh.jpg";
 import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
 export const founders = [
