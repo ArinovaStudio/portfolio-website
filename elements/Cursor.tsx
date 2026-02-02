@@ -13,8 +13,8 @@ export default function CustomCursor() {
   const mouseY = useMotionValue(0);
 
   // Smooth motion using springs
-  const x = useSpring(mouseX, { damping: 25, stiffness: 150 });
-  const y = useSpring(mouseY, { damping: 25, stiffness: 150 });
+  const x = useSpring(mouseX, { damping: 18, stiffness: 100 });
+  const y = useSpring(mouseY, { damping: 18, stiffness: 100 });
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -110,13 +110,13 @@ export default function CustomCursor() {
           layoutId="innerBall"
           className={`rounded-full bg-white relative`}
           style={{
-            width: type === "hover" ? 60 : 30,
-            height: type === "hover" ? 60 : 30,
+            width: type === "hover" ? 50 : 20,
+            height: type === "hover" ? 50 : 20,
             borderWidth: type === "hover" ? 0 : 1,
             borderStyle: "solid",
             borderColor: "#fff",
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 45 }}
+          transition={{ type: "spring", stiffness: 100, damping: 25 }}
         />
       )}
     </motion.div>

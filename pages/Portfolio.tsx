@@ -19,7 +19,7 @@ export default function Portfolio() {
       startTransition(async () => {
         const data = await fetchData("portfolio");
         if (data) {
-          setProducts(data);
+          setProducts(data.slice(0, 5));
         }
       });
   
@@ -61,6 +61,8 @@ export default function Portfolio() {
     // At this point, products array is guaranteed to have data
     const currentProduct = products[current];
 
+    console.log(currentProduct);
+    
     return (
       <div className="w-screen min-h-screen text-white relative px-6 sm:px-10 md:px-12 py-10 flex flex-col justify-between overflow-hidden">
         {/* Header */}
@@ -96,17 +98,17 @@ export default function Portfolio() {
                 src={urlFor(currentProduct.mainImage).url()}
                 alt={currentProduct.title}
                 fill
-                className="object-cover brightness-75 transition-all duration-1000"
+                className="object-cover brightness-70 transition-all duration-700 "
                 priority
               />
 
-              <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-10 md:p-16 lg:p-20">
+              <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-10 md:p-10 lg:p-14">
                 <motion.div
                   variants={textVariant as any}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="max-w-3xl"
+                  className="max-w-4xl bg-black/30 p-6 backdrop-blur-xs"
                 >
                   <div className="px-3 py-1 w-fit bg-white backdrop-blur-sm text-black text-lg sm:text-xl md:text-2xl font-dm mb-4">
                     {currentProduct.category}

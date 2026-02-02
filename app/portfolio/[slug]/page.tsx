@@ -90,7 +90,7 @@ export default function PortfolioDetailsPage() {
         <header className="mb-10 flex items-center justify-between">
           <div className="space-y-2 w-full">
             <div onClick={() => router.back()} className="flex gap-2 w-full justify-between items-center">
-            <p className="flex gap-2"><LucideArrowLeft />Back</p>  
+            <p className="flex gap-2 hover:scale-110 cursor-pointer transition-all"><LucideArrowLeft />Back</p>  
             <div className="">
                           <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-500">
               PORTFOLIO

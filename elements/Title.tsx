@@ -30,7 +30,7 @@ function Title({title, slogan}: {title: string, slogan: string}) {
   }
   
   return (
-    <div className='flex flex-col md:flex-row pt-20 md:pt-24 justify-between px-4 sm:px-6 md:px-8 items-start md:items-center gap-4 sm:gap-6 md:gap-8'>
+    <div className='flex flex-col md:flex-row pt-20 md:pt-24 justify-between px-4 sm:px-6 md:px-8 items-start md:items-center gap-1 sm:gap-6 md:gap-8'>
       <motion.h1 
         className='font-stretch uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight'
         variants={titleVariants as any}
@@ -41,7 +41,7 @@ function Title({title, slogan}: {title: string, slogan: string}) {
         {title}
       </motion.h1>
       <motion.p 
-        className='text-base sm:text-lg md:text-xl lg:text-2xl font-light font-cursive italic w-full md:w-3/6 lg:w-3/6 text-left md:text-right text-neutral-400'
+        className='text-base mb-2 sm:text-lg md:text-xl lg:text-2xl font-light font-cursive italic w-full md:w-3/6 lg:w-3/6 text-left md:text-right text-neutral-400'
         variants={sloganVariants as any}
         initial="hidden"
         whileInView="visible"

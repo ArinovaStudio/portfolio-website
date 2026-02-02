@@ -29,7 +29,7 @@ export default function Blogs() {
       )
     }
   return (
-    <section className="bg-[#0b0b0b] text-white px-6 md:px-16 lg:px-24 py-16 min-h-screen h-screen relative">
+    <section className="bg-[#0b0b0b] text-white px-6 md:px-16 lg:px-24 py-16 min-h-screen lg:h-screen h-auto relative">
       {/* Heading and View All */}
       <div className="flex justify-between items-start mb-10">
         <motion.h2 

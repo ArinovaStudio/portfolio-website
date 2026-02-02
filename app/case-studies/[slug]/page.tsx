@@ -25,6 +25,8 @@ const CaseStudyPage = () => {
   const getData = () => startTransition(async () => {
     const data = await fetchData("caseStudyBySlug", params.slug as any)
     if (data) {
+      console.log(data);
+      
       setCaseStudies(data)
     }
   })
@@ -52,17 +54,21 @@ const CaseStudyPage = () => {
                   <p className="flex gap-2"><LucideArrowLeft />Back</p>  
                   <div className="">
                                 <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-500">
-                    BLOGS
+                    CASE STUDIES
                   </p>
                   <p className="text-xs sm:text-sm text-neutral-400">
-                    A closer look at one of blog.
+                    A closer look at one of our case studies.
                   </p>
                   </div>
                   </div>
                 </div>
               </header>
+                    <div className="flex w-full justify-between items-end mb-4">
+        <h1 className="sm:text-4xl text-lg font-unbounded font-medium">{caseStudies.businessName}</h1>
+        <h1>{new Date(caseStudies.publishedAt).toLocaleDateString()}</h1>
+      </div>
       {caseStudies.mainImage && (
-          <div className="mb-8 w-full h-[32rem] relative">
+        <div className="mb-8 w-full sm:h-[32rem] h-[20rem] relative">
           <Image
             src={urlFor(caseStudies.mainImage).url()}
             alt={caseStudies.mainImage.alt || caseStudies.title}
@@ -71,16 +77,16 @@ const CaseStudyPage = () => {
           />
         </div>
       )}
-      <h1 className="text-4xl font-bold mb-2">{caseStudies.title}</h1>
-      <p className="text-lg text-gray-200 mb-6">{caseStudies.miniDescription}</p>
+      <h1 className="sm:text-4xl text-xl font-bold mb-2">{caseStudies.title}</h1>
+      <p className="sm:text-base text-sm text-gray-200 mb-6">{caseStudies.miniDescription}</p>
 
       {/* Stats */}
       {caseStudies.stats?.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-10 gap-2 mb-4">
           {caseStudies.stats.map((stat, idx) => (
-            <div key={idx} className="p-6 rounded-lg text-center">
-              <h3 className="text-5xl font-unbounded font-bold">{stat.value}</h3>
-              <p className="text-gray-400 mt-2 font-2xl font-space">{stat.key}</p>
+            <div key={idx} className="sm:p-6 p-2 rounded-lg text-center">
+              <h3 className="sm:text-5xl text-3xl font-unbounded font-bold">{stat.value}</h3>
+              <p className="text-gray-400 mt-2 sm:text-lg text-sm  font-space">{stat.key}</p>
             </div>
           ))}
         </div>
@@ -88,20 +94,17 @@ const CaseStudyPage = () => {
 
       {/* Percentage if any */}
       {caseStudies.percentage && (
-        <>
-        <p className="text-6xl mb-1 font-unbounded font-bold text-right text-primary">
+        <h1 className="sm:text-3xl text-xl font-unbounded flex justify-between items-center">
+            Peformance Improved
+                        <span className="text-primary font-bold">
           {caseStudies.percentage}%
-        </p>
-        <h1 className="text-4xl font-unbounded flex justify-between items-center">
-            <span className="text-2xl">
-            {new Date(caseStudies.publishedAt).toLocaleDateString()}
+            {/* {} */}
             </span>
-            Peformance Improved</h1>
-        </>
+            </h1>
       )}
 
       {/* Rich text body */}
-      <div className="max-w-none border-t-2 pt-6 border-neutral-800">
+      <div className="max-w-none border-t-2 my-6 border-neutral-800">
         <PortableText value={caseStudies.body} components={portableTextComponents}  />
       </div>
     </div>

@@ -17,8 +17,7 @@ export default function Cards({ blog }: { blog: any }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: blog.id * 0.2 }}
       viewport={{ once: false }}
-      whileHover={{ y: -8 }}
-      className="flex flex-col overflow-hidden border border-transparent group transition-transform duration-500"
+      className="flex flex-col overflow-hidden border border-transparent group transition-transform duration-200 hover:-translate-y-2"
     >
       {/* Image */}
       <div className="w-full h-80 overflow-hidden">
@@ -64,7 +63,7 @@ export default function Cards({ blog }: { blog: any }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1 }}
           viewport={{ once: false }}
-          className="text-2xl sm:text-3xl font-space font-medium mb-4 text-white"
+          className="text-base sm:text-xl font-space font-medium mb-4 text-white"
         >
           {blog.title}
         </motion.h3>
@@ -74,7 +73,7 @@ export default function Cards({ blog }: { blog: any }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
           viewport={{ once: false }}
-          className="text-neutral-500 font-space font-light text-sm sm:text-base"
+          className="text-neutral-500 line-clamp-2 font-space font-light text-sm sm:text-base"
         >
           {blog.miniDescription}
         </motion.p>

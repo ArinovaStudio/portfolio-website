@@ -61,19 +61,22 @@ function page() {
       <Navbar />
       <div className="w-screen min-h-screen h-auto">
         <Title title="Porrtfolio" slogan="Crafting seamless digital experiences with precision." />
-        <motion.div
+        <div
           className="flex flex-wrap w-full px-4 sm:px-8 md:px-12 lg:px-16 gap-4 sm:gap-8 md:gap-12 lg:gap-10 justify-start items-center my-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          // variants={containerVariants}
+          // initial="hidden"
+          // whileInView="visible"
+          // viewport={{ once: true, amount: 0.2 }}
         >
           {products.map((items: any, i: number) => (
-            <Link href={`/portfolio/${items.slug.current}`} className="w-[48%] h-full" key={i}>
+            <Link 
+            onClick={() => setCursor("default")}
+            href={`/portfolio/${items.slug.current}`}
+            onMouseEnter={() => setCursor("label", "View")}
+            onMouseLeave={() => setCursor("default")}            
+            className="sm:w-[48%] lg:w-full h-full" key={i}>
               <motion.div
-                onMouseEnter={() => setCursor("label", "View")}
-                onMouseLeave={() => setCursor("default")}
-                key={i}
+                // key={i}
                 className="w-full h-[20rem] sm:h-[25rem] md:h-[28rem] lg:h-[30rem] relative overflow-hidden"
                 variants={itemVariants as any}
               >
@@ -89,11 +92,12 @@ function page() {
               </h1>
             </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
       <Footer />
     </>
   );
 }
+
 
 export default page;

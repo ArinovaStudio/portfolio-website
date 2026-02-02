@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { fetchData } from "@/sanity/lib/fetch";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { getAbsolutePosition } from "@/utils/randomValues";
 
 interface ImageItem {
   _id: number;
@@ -84,12 +85,12 @@ function DesignGallery() {
   const finalMessageOpacity = useTransform(
     scrollYProgress,
     [imagesEndProgress, imagesEndProgress + 0.1],
-    [0, 1]
+    [0, 1],
   );
   const finalMessageScale = useTransform(
     scrollYProgress,
     [imagesEndProgress, imagesEndProgress + 0.1],
-    [0.8, 1]
+    [0.8, 1],
   );
 
   return (
@@ -104,8 +105,14 @@ function DesignGallery() {
         <div className="absolute inset-0 z-0">
           {images.map((image: ImageItem, index: number) => {
             // Each image gets its own scroll segment
-            const segmentStart =
-              imagesStartProgress + segmentLength * index;
+            const isMobile =
+              typeof window !== "undefined" && window.innerWidth < 768;
+
+            const { left, top } = getAbsolutePosition({
+              index,
+              isMobile,
+            });
+            const segmentStart = imagesStartProgress + segmentLength * index;
             const segmentEnd = segmentStart + segmentLength;
 
             // inside each segment: 0–30% fade in, 30–70% hold, 70–100% fade out
@@ -115,10 +122,7 @@ function DesignGallery() {
             let opacity = 0;
             let yPosition = 20; // translateY in %
 
-            if (
-              scrollProgress >= segmentStart &&
-              scrollProgress < appearEnd
-            ) {
+            if (scrollProgress >= segmentStart && scrollProgress < appearEnd) {
               // fade in
               const localProgress =
                 (scrollProgress - segmentStart) / (appearEnd - segmentStart);
@@ -153,10 +157,10 @@ function DesignGallery() {
                 <motion.div
                   className="hidden md:block absolute rounded-lg overflow-hidden shadow-2xl"
                   style={{
-                    width: image.width,
-                    height: image.height,
-                    left: image.left,
-                    top: image.top,
+                    width: "600px",
+                    height: "350px",
+                    left: left,
+                    top: top,
                     opacity,
                     y: `${yPosition}%`,
                   }}
@@ -173,10 +177,10 @@ function DesignGallery() {
                 <motion.div
                   className="block md:hidden absolute rounded-lg overflow-hidden shadow-2xl"
                   style={{
-                    width: image.mobileWidth,
-                    height: image.mobileHeight,
-                    left: image.mobileLeft,
-                    top: image.mobileTop,
+                    width: "300px",
+                    height: "175px",
+                    left: left,
+                    top: top,
                     opacity,
                     y: `${yPosition}%`,
                   }}

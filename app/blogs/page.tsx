@@ -41,10 +41,10 @@ function page() {
             slogan="Insights, trends, and ideas shaping the future."
             />
 
-        <div className="flex flex-wrap mx-auto my-10 justify-center items-center sm:items-start sm:px-14 px-4 pr-0 pl-8 gap-4 sm:gap-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 gap-8">
         {
             blogs.map((items: any, idx: number) => (
-                <Link href={`/blogs/${items.slug.current}`} key={idx} className="sm:w-1/4 w-full">
+                <Link href={`/blogs/${items.slug.current}`} key={idx} className="w-full">
                 <Cards 
                 blog={items}
                 key={idx}

@@ -59,19 +59,20 @@ function page() {
             className={`flex flex-col lg:justify-between lg:items-center px-4 sm:px-8 lg:px-14 gap-6 lg:gap-12 py-6 lg:py-16 sm:mt-12 mt-4 w-full min-h-[80vh] lg:h-[80vh] ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"}`}
             key={i}
           >
-            <div className="w-full lg:w-3/5 h-auto lg:h-full flex flex-col justify-center items-start">
+            <div className={`w-full lg:w-3/5 h-auto lg:h-full flex flex-col justify-center ${i % 2 !== 0 ? "items-end text-right" : "items-start text-left"}`}>
               <div className="mb-4">
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 lg:gap-0">
-                  <div className="w-full lg:w-3/5">
-                    <p className="text-gray-400 text-sm sm:text-base font-dm mb-2">
-                      We Helped <span className="text-white">{study.title}</span>{" "}
+                  <div className={`w-full`}>
+      <h1 className={`sm:text-3xl text-xl font-bold mb-2 ${i % 2 !== 0 ? "text-right" : "text-left"}`}>{study.title}</h1>
+                    <p className={`text-gray-400 text-sm sm:text-base font-dm mb-2  ${i % 2 !== 0 ? "text-right" : "text-left"}`}>
+                      We Helped <span className="text-white text-base font-bold">{study.businessName}</span>{" "}
                       {study.miniDescription}
                     </p>
                   </div>
 
-                  <div className="text-5xl sm:text-6xl md:text-7xl font-semibold font-unbounded">
+                  {/* <div className="text-5xl sm:text-6xl md:text-7xl font-semibold font-unbounded">
                     {study.percentage}%
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -90,7 +91,7 @@ function page() {
               </div>
             </div>
                   <div
-                  onClick={() => router.push(`/case-studies/${study.slug.current}`)}
+                  onClick={() => {router.push(`/case-studies/${study.slug.current}`), setCursor("default")}}
                   onMouseEnter={() => setCursor("label", study.businessName)}
                   onMouseLeave={() => setCursor("default")}
                     className="w-full md:w-auto"
