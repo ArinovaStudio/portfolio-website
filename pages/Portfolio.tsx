@@ -7,11 +7,11 @@ import { fetchData } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
 import MiniLoader from "@/elements/SmallLoader";
+import { PortfolioCards } from "@/components/PortfolioCard";
 
 export default function Portfolio() {
     const [products, setProducts] = useState<any>([]);
     const [transition, startTransition] = useTransition();
-    const [current, setCurrent] = useState(0);
 
     const router = useRouter()
 
@@ -19,7 +19,7 @@ export default function Portfolio() {
       startTransition(async () => {
         const data = await fetchData("portfolio");
         if (data) {
-          setProducts(data.slice(0, 5));
+          setProducts(data.slice(0, 10));
         }
       });
   
@@ -27,17 +27,7 @@ export default function Portfolio() {
       getData();
     }, []);
   
-    useEffect(() => {
-      // Only start interval if products exist
-      if (products.length === 0) return;
 
-      const interval = setInterval(() => {
-        setCurrent((prev) => (prev + 1) % products.length);
-      }, 6000); // Slide changes every 6 seconds
-      
-      return () => clearInterval(interval);
-
-    }, [products.length]);
 
     const fadeVariant = {
       initial: { opacity: 0, scale: 1.05 },
@@ -58,11 +48,6 @@ export default function Portfolio() {
       )
     }
 
-    // At this point, products array is guaranteed to have data
-    const currentProduct = products[current];
-
-    console.log(currentProduct);
-    
     return (
       <div className="w-screen min-h-screen text-white relative px-6 sm:px-10 md:px-12 py-10 flex flex-col justify-between overflow-hidden">
         {/* Header */}
@@ -73,7 +58,7 @@ export default function Portfolio() {
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <h1 className="font-unbounded text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 sm:mb-0">
+          <h1 className="font-unbounded text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-6 sm:mb-0">
             LATEST <br /> PORTFOLIO
           </h1>
           <p className="sm:w-1/2 lg:w-1/3 font-medium text-sm sm:text-xl md:text-2xl text-right font-space">
@@ -82,48 +67,7 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* Carousel */}
-        <div className="w-full flex-grow relative mt-4 sm:-mt-16 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              onClick={() => router.push(`/portfolio/${currentProduct.slug.current}`)}
-              key={currentProduct._id}
-              variants={fadeVariant as any}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="absolute inset-0"
-            >
-              <Image
-                src={urlFor(currentProduct.mainImage).url()}
-                alt={currentProduct.title}
-                fill
-                className="object-cover brightness-70 transition-all duration-700 "
-                priority
-              />
-
-              <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-10 md:p-10 lg:p-14">
-                <motion.div
-                  variants={textVariant as any}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  className="max-w-4xl bg-black/30 p-6 backdrop-blur-xs"
-                >
-                  <div className="px-3 py-1 w-fit bg-white backdrop-blur-sm text-black text-lg sm:text-xl md:text-2xl font-dm mb-4">
-                    {currentProduct.category}
-                  </div>
-                  <h1 className="text-3xl sm:text-5xl md:text-4xl lg:text-6xl w-full font-tall mb-3 tracking-wide font-medium">
-                    {currentProduct.title}
-                  </h1>
-                  <p className="font-dm italic text-base sm:text-lg md:text-xl font-light max-w-xl">
-                    {currentProduct.miniDescription}
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <PortfolioCards data={products} />
       </div>
     );
 }

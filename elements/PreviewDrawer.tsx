@@ -17,11 +17,6 @@ export function PreviewDrawer({ open, url, onClose, title }: PreviewDrawerProps)
     }
   };
 
-  const handleOpenNewTab = () => {
-    if (url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
 
   return (
     <div

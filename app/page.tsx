@@ -25,9 +25,9 @@ const Services = dynamic(() => import("@/pages/Services"), {
 const DesignGallery = dynamic(() => import("@/pages/DesignGallery"), {
   loading: () => <MiniLoader />,
 });
-const CaseStudiesScroll = dynamic(() => import("@/pages/CaseStudies"), {
-  loading: () => <MiniLoader />,
-});
+// const CaseStudiesScroll = dynamic(() => import("@/pages/CaseStudies"), {
+//   loading: () => <MiniLoader />,
+// });
 const Blogs = dynamic(() => import("@/pages/Blogs"), {
   loading: () => <MiniLoader />,
 });
@@ -57,7 +57,7 @@ export default function Home() {
           <AboutCompany />
           <Services />
           <Approch />
-          <CaseStudiesScroll />
+          {/* <CaseStudiesScroll /> */}
           <DesignGallery />
           <Blogs />
           <TestimonialsCarousel />
