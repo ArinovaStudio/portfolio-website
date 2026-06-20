@@ -61,7 +61,7 @@ function Main() {
       <div className="w-screen min-h-screen h-auto">
         <Title title="Porrtfolio" slogan="Crafting seamless digital experiences with precision." />
         <div
-          className="flex flex-wrap w-full px-4 sm:px-8 md:px-12 lg:px-16 gap-4 sm:gap-8 md:gap-12 lg:gap-10 justify-center items-center my-10"
+className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full px-4 md:px-8 lg:px-16 gap-4 md:gap-8 lg:gap-10 my-10"
         >
           {products.map((items: any, i: number) => (
             <Link 
@@ -69,10 +69,11 @@ function Main() {
             href={`/portfolio/${items.slug.current}`}
             onMouseEnter={() => setCursor("label", "View")}
             onMouseLeave={() => setCursor("default")}            
-            className="sm:w-[48%] lg:w-[31%] h-full" key={i}>
+            
+            key={i}>
               <motion.div
                 // key={i}
-                className="w-full h-[20rem] sm:h-[25rem] md:h-[28rem] lg:h-[30rem] relative overflow-hidden"
+                className="w-full h-[20rem] sm:h-[25rem] md:h-[28rem] lg:h-[24rem] relative overflow-hidden"
                 variants={itemVariants as any}
               >
                 <Image
