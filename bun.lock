@@ -5,12 +5,12 @@
     "": {
       "name": "arionova-porfolio",
       "dependencies": {
+        "arionova-porfolio": ".",
         "@react-three/drei": "^10.7.6",
         "@react-three/fiber": "^9.4.0",
         "@sanity/icons": "^3.7.4",
         "@sanity/image-url": "^1.2.0",
         "@sanity/vision": "^4.10.2",
-        "arionova-porfolio": ".",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "framer-motion": "^12.23.24",

@@ -13,12 +13,11 @@ import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function page() {
+function Main() {
   const { setCursor } = useCursor();
   const [products, setProducts] = useState<any>([]);
   const [transition, startTransition] = useTransition();
 
-  const router = useRouter();
   const getData = () =>
     startTransition(async () => {
       const data = await fetchData("portfolio");
@@ -96,4 +95,4 @@ function page() {
 }
 
 
-export default page;
+export default Main;

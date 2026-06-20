@@ -73,8 +73,6 @@ export default function PortfolioDetailsPage() {
   };
   const handleView = () => {
     if (project?.hostedUrl) {
-      // setPreviewUrl(project.hostedUrl);
-      // setIsPreviewOpen(true);
       const encode = btoa(project.hostedUrl)
       router.push(`/portfolio/preview/${encode}`)
     }

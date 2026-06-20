@@ -13,7 +13,10 @@ function PreviewUrl() {
   const router = useRouter()
   useEffect(() => {
     if (id) {
-      const url = atob(id);
+      console.log(decodeURIComponent(id));
+      const url = atob(decodeURIComponent(id));
+      console.log(url);
+      
       setPewview(url)
     }
   }, [id]);
